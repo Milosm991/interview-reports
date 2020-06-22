@@ -9,8 +9,8 @@ function App() {
     <div className="App">
       <Switch>
         <Route exact path="/admin" component={LoginForm} />
+        <Route exact path="/admin/create_report" component={SubmitReport} />
       </Switch>
-      {/* <SubmitReport /> */}
     </div>
   );
 }
