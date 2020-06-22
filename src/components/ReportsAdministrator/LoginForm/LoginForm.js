@@ -48,9 +48,9 @@ class LoginForm extends React.Component {
           onChange={this.loginValues}
           placeholder="Enter password..."
         />
-        <Button className="LoginForm__btn" onClick={this.loginCheck}>
+        <Link to='/admin/listofreports'><Button className="LoginForm__btn" onClick={this.loginCheck}>
           Login
-        </Button>
+        </Button></Link>
       </div>
     );
   }

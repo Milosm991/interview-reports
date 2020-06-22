@@ -1,0 +1,19 @@
+.aboutReport {
+  display: flex;
+  justify-content: space-around;
+  border: solid 1px black;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+}
+
+.modal {
+  width: 30%;
+  position: relative;
+  top: 20%;
+  left: 35%;
+  padding: 20px;
+  background-color: lightblue;
+}
