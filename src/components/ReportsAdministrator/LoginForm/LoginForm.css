@@ -1,0 +1,20 @@
+.LoginForm__wrapper {
+  display: flex;
+  background-color: #00bfff;
+  flex-direction: column;
+  width: 20%;
+  align-items: center;
+  padding: 10px;
+  margin: 100px auto;
+  height: 25em;
+  border-radius: 5px;
+}
+.LoginForm__input {
+  width: 80%;
+  margin: 25px;
+  padding: 10px;
+  border-radius: 10px;
+}
+.LoginForm__btn {
+  margin-top: 8em;
+}
