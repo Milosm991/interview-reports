@@ -1,6 +1,6 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import "./LoginForm.css";
+import style from "./LoginForm.module.css";
 import { isAdmin } from "../../../services/loginService";
 import { Link } from "react-router-dom";
 
@@ -11,6 +11,7 @@ class LoginForm extends React.Component {
       email: "",
       password: "",
       loginStatus: null,
+      errorMessage: ''
     };
   }
 
@@ -23,17 +24,18 @@ class LoginForm extends React.Component {
     isAdmin(this.state)
       .then((res) => {
         if (res.statusText === "OK") {
-          window.location.pathname = "/admin/listofreports";
+          window.location.pathname = `/admin/listofreports`;
+          sessionStorage.setItem('accsesKey', res.data.accessToken)
         }
       })
-      .catch((res) => alert("No Admin found"));
+      .catch((res) => this.setState({ errorMessage: "Sorry, you need preemision" }));
   };
 
   render() {
     return (
-      <div className="LoginForm__wrapper">
+      <div className={style.LoginForm__wrapper}>
         <input
-          className="LoginForm__input"
+          className={style.LoginForm__input}
           type="text"
           name="email"
           value={this.state.email}
@@ -41,13 +43,14 @@ class LoginForm extends React.Component {
           onChange={this.loginValues}
         />
         <input
-          className="LoginForm__input"
+          className={style.LoginForm__input}
           type="password"
           name="password"
           value={this.state.password}
           onChange={this.loginValues}
           placeholder="Enter password..."
         />
+        {this.state.errorMessage !== '' ? <p className={style.error}>{this.state.errorMessage}</p> : null}
         <Button className="LoginForm__btn" onClick={this.loginCheck}>
           Login
         </Button>
