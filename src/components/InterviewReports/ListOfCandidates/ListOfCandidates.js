@@ -3,6 +3,7 @@ import { Row, Col } from "react-bootstrap";
 import { Candidate } from "./Candidate/Candidate";
 import style from "./ListOfCandidates.module.scss";
 import { CandidateService } from "../../../services/CandidateService";
+import { IRHeader } from "../IRHeader/IRHeader";
 
 class ListOfCandidates extends React.Component {
   constructor(props) {
@@ -21,7 +22,8 @@ class ListOfCandidates extends React.Component {
   }
 
   render() {
-    return (
+    return (<div>
+      <IRHeader />
       <Row>
         <Col className={style.wrapper} xs={12}>
           <Row>
@@ -36,6 +38,7 @@ class ListOfCandidates extends React.Component {
           </Row>
         </Col>
       </Row>
+    </div>
     );
   }
 }
