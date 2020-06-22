@@ -1,0 +1,11 @@
+.paragraph{
+    display: flex;
+    flex-direction: column;
+}
+.paragraph > p{
+     margin: 0px;
+}
+.wrapper{
+    width: 20em;
+    margin-left: 10px;
+}
