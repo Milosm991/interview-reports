@@ -11,7 +11,7 @@ class LoginForm extends React.Component {
       email: "",
       password: "",
       loginStatus: null,
-      errorMessage: ''
+      errorMessage: "",
     };
   }
 
@@ -25,10 +25,12 @@ class LoginForm extends React.Component {
       .then((res) => {
         if (res.statusText === "OK") {
           window.location.pathname = `/admin/listofreports`;
-          sessionStorage.setItem('accsesKey', res.data.accessToken)
+          sessionStorage.setItem("accsesKey", res.data.accessToken);
         }
       })
-      .catch((res) => this.setState({ errorMessage: "Sorry, you need preemision" }));
+      .catch((res) =>
+        this.setState({ errorMessage: "Sorry, you need preemision" })
+      );
   };
 
   render() {
@@ -50,7 +52,9 @@ class LoginForm extends React.Component {
           onChange={this.loginValues}
           placeholder="Enter password..."
         />
-        {this.state.errorMessage !== '' ? <p className={style.error}>{this.state.errorMessage}</p> : null}
+        {this.state.errorMessage !== "" ? (
+          <p className={style.error}>{this.state.errorMessage}</p>
+        ) : null}
         <Button className="LoginForm__btn" onClick={this.loginCheck}>
           Login
         </Button>

@@ -1,0 +1,30 @@
+.aboutReport {
+  display: flex;
+  justify-content: space-around;
+  border: solid 1px black;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  width: 100%;
+  padding: 10px;
+}
+
+.modal {
+  width: 40%;
+  position: relative;
+  top: 20%;
+  left: 30%;
+  padding: 20px;
+  background-color: white;
+}
+
+.modalBtn {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}
+
+.aboutReport:hover {
+  cursor: pointer;
+  background-color: lightgrey;
+}
