@@ -11,7 +11,7 @@ const SelectCandidate = ({ characters, getCandidate, candidateImage }) => {
       <div
         className={`${style.typeOfAction} col-lg-2 border-right border-dark`}
       >
-        <p className={`${style.paragraph} font-weight-bold`}>
+        <p className={`${style.paragraph} font-weight-bolder `}>
           <span className={style.span}>1.</span> Select Candidate
         </p>
         <p className={`${style.paragraph}`}>2. Select Company </p>
