@@ -2,7 +2,6 @@ import React from "react";
 import { Button } from "react-bootstrap";
 import style from "./LoginForm.module.css";
 import { isAdmin } from "../../../services/loginService";
-import { Link } from "react-router-dom";
 
 class LoginForm extends React.Component {
   constructor(props) {
