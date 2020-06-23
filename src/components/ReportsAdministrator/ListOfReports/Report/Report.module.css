@@ -10,10 +10,21 @@
 }
 
 .modal {
-  width: 30%;
+  width: 40%;
   position: relative;
   top: 20%;
-  left: 35%;
+  left: 30%;
   padding: 20px;
-  background-color: lightblue;
+  background-color: white;
+}
+
+.modalBtn {
+  position: absolute;
+  top: 20px;
+  right: 50px;
+}
+
+.aboutReport:hover {
+  cursor: pointer;
+  background-color: lightgrey;
 }

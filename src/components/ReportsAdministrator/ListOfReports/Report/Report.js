@@ -7,13 +7,41 @@ import Modal from "react-modal";
 
 const Report = ({ name, company, status, interviewDate, note, phase }) => {
   const date = new Date(interviewDate);
-  const [modalIsOpen, setIsOpen] = useState(false);
+
+  const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
-    <div className={`row ${style.aboutReport}`} onClick={() => setIsOpen(true)}>
+    <>
+      <div
+        className={`row ${style.aboutReport}`}
+        onClick={() => setModalIsOpen(true)}
+      >
+        <div className="col-3">
+          <h4>{company}</h4>
+          <span>Company</span>
+        </div>
+        <div className="col-3">
+          <h4>{name}</h4>
+          <span>Candidate</span>
+        </div>
+        <div className="col-2">
+          <h4>{`${date.getDay()}.${
+            date.getMonth() + 1
+          }.${date.getFullYear()}`}</h4>
+          <span>Interview Date</span>
+        </div>
+        <div className="col-2">
+          <h4>{status}</h4>
+          <span>Status</span>
+        </div>
+        <div className="col-1">
+          <AiOutlineClose />
+        </div>
+      </div>
+
       <Modal
         isOpen={modalIsOpen}
-        onRequestClose={() => setIsOpen(false)}
+        onRequestClose={() => setModalIsOpen(false)}
         className={style.modal}
       >
         <InfoModal
@@ -24,30 +52,14 @@ const Report = ({ name, company, status, interviewDate, note, phase }) => {
           note={note}
           phase={phase}
         />
+        <button
+          onClick={() => setModalIsOpen(false)}
+          className={style.modalBtn}
+        >
+          X
+        </button>
       </Modal>
-
-      <div className="col-3">
-        <h4>{company}</h4>
-        <span>Company</span>
-      </div>
-      <div className="col-3">
-        <h4>{name}</h4>
-        <span>Candidate</span>
-      </div>
-      <div className="col-2">
-        <h4>{`${date.getDay()}.${
-          date.getMonth() + 1
-        }.${date.getFullYear()}`}</h4>
-        <span>Interview Date</span>
-      </div>
-      <div className="col-2">
-        <h4>{status}</h4>
-        <span>Status</span>
-      </div>
-      <div className="col-1">
-        <AiOutlineClose />
-      </div>
-    </div>
+    </>
   );
 };
 export default Report;
