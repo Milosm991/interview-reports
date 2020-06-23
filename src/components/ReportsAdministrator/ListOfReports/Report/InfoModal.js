@@ -1,5 +1,5 @@
 import React from "react";
-import style from "./InfoModal.module.css";
+import style from "./InfoModal.module.scss";
 import { Card, Row, Col } from "react-bootstrap";
 
 const InfoModal = ({ name, company, status, note, date, phase }) => {
@@ -49,5 +49,3 @@ const InfoModal = ({ name, company, status, note, date, phase }) => {
   );
 };
 export default InfoModal;
-
-
