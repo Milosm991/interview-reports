@@ -1,16 +1,18 @@
 import React from "react";
-import { CandidatesServise } from "../../../../services/CandidatesServise";
-import { Candidate } from "./Candidate/Candidate";
-import style from "./SubmitReport.module.scss";
-import { Button } from "react-bootstrap";
+import { Container, Row, Col, Button } from "react-bootstrap";
+
 import { SelectCompany } from "./SelectCompany/SelectCompany";
-import { Container, Row, Col } from "react-bootstrap";
+import { APHeader } from "../../APHeader/APHeader";
+import { SelectCandidate } from "./SelectCandidate/SelectCandidate";
+import { CompanyService } from "../../../../services/CompanyServise";
+import { CandidatesServise } from "../../../../services/CandidatesServise";
 
 class SubmitReport extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       characters: null,
+      companies: null,
       candidateId: null,
       candidateName: "",
       companyId: null,
@@ -26,6 +28,9 @@ class SubmitReport extends React.Component {
     new CandidatesServise()
       .fetchAll()
       .then((res) => this.setState({ characters: res.data }));
+    new CompanyService()
+      .fetchAll()
+      .then((result) => this.setState({ companies: result.data }));
   }
   getCandidate = (item, currentTarget) => {
     let a = this.state.characters.filter((character) => item === character);
@@ -36,6 +41,7 @@ class SubmitReport extends React.Component {
     });
     this.selectedCandidate(currentTarget);
   };
+
   selectedCandidate(Candidate) {
     if (document.querySelector(".bg-secondary") !== null) {
       let $selectedCandidated = document.querySelector(".bg-secondary");
@@ -47,49 +53,31 @@ class SubmitReport extends React.Component {
   render() {
     return (
       <Container>
-        <Row>
-          <Col xs={12}>
-            <Row>
-              <div
-                className={`${style.typeOfAction} col-lg-2 border-right border-dark`}
-              >
-                <p className={`${style.paragraph}`}>1. Select Candidate</p>
-                <p className={`${style.paragraph}`}>2. Select Company </p>
-                <p className={`${style.paragraph} `}>3. Fill Report Deatails</p>
-                <div>
-                  {this.state.candidateId !== 0 ? (
-                    <img
-                      src={`${this.state.candidateImage}`}
-                      className="Candidate__image"
-                      alt="avatar"
-                    />
-                  ) : null}
-                </div>
-              </div>
-              <div className={`${style.candidates} col-10`}>
-                <Row>
-                  {this.state.characters !== null
-                    ? this.state.characters.map((item, i) => (
-                        <Col xs={6}>
-                          <Candidate
-                            key={i}
-                            candidate={item}
-                            getInfoForSubmit={this.getCandidate}
-                          />
-                        </Col>
-                      ))
-                    : null}
-                  <Col
-                    xs={{ span: 10, offset: 2 }}
-                    className="d-flex justify-content-end mt-4"
-                  >
-                    <Button className={`${style.btn} mr-5`}>Next</Button>
-                  </Col>
-                </Row>
-              </div>
-            </Row>
-          </Col>
-        </Row>
+        <APHeader />
+        <div className="mt-5">
+          <Row>
+            <Col xs={12}>
+              {this.state.characters !== null ? (
+                <SelectCandidate
+                  characters={this.state.characters}
+                  getCandidate={this.getCandidate}
+                  candidateImage={this.state.candidateImage}
+                />
+              ) : null}
+            </Col>
+          </Row>
+          {/*SELECT COMPANY */}
+          {/* <Row>
+            <Col xs={12}>
+              {this.state.companies !== null ? (
+                <SelectCompany
+                  companies={this.state.companies}
+                  candidateImage={this.state.candidateImage}
+                />
+              ) : null}
+            </Col>
+          </Row> */}
+        </div>
       </Container>
     );
   }
