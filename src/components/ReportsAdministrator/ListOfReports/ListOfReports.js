@@ -31,7 +31,7 @@ class ListOfReports extends React.Component {
   render() {
     return (
       <div className={style.wrapper}>
-        <APHeader change={this.onChange} isActive={this.state.isLinkActive} />
+        <APHeader />
         {this.state.reports.map((report) => (
           <Report
             key={report.id}

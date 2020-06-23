@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  width: 30em;
+  margin-bottom: 10px;
+}
+
+.paragraph {
+  display: flex;
+  flex-direction: column;
+  text-align: left !important;
+  p {
+    margin: 0px;
+  }
+}
