@@ -3,6 +3,9 @@ import Report from "./Report/Report.js";
 import { allReports } from "../../../services/reportsService.js";
 import style from "./ListOfReports.module.scss";
 import { APHeader } from "../APHeader/APHeader";
+import { SearchBar } from "../../SearchBar/SearchBar.js";
+import { Container } from "react-bootstrap";
+import { search } from "../../../entities/search";
 
 class ListOfReports extends React.Component {
   constructor(props) {
@@ -10,12 +13,12 @@ class ListOfReports extends React.Component {
 
     this.state = {
       reports: [],
-      isLinkActive: true,
+      filteredReports: [],
     };
   }
   componentDidMount() {
     allReports().then((reports) => {
-      this.setState({ reports: reports.data });
+      this.setState({ reports: reports.data, filteredReports: reports.data });
     });
   }
 
@@ -25,26 +28,38 @@ class ListOfReports extends React.Component {
     this.setState({ reports: newArray });
   };
 
-  onChange = () => {
-    this.setState({ isLinkActive: !this.state.isLinkActive });
+  inputValue = (value) => {
+    let filteredArray = this.state.reports.filter((item) => {
+      if (
+        item.companyName.toLowerCase().includes(value.toLowerCase()) ||
+        item.candidateName.toLowerCase().includes(value.toLowerCase())
+      ) {
+        return true;
+      }
+    });
+    this.setState({ filteredReports: filteredArray });
   };
+
   render() {
     return (
       <div className={style.wrapper}>
-        <APHeader />
-        {this.state.reports.map((report) => (
-          <Report
-            key={report.id}
-            name={report.candidateName}
-            company={report.companyName}
-            status={report.status}
-            interviewDate={report.interviewDate}
-            note={report.note}
-            phase={report.phase}
-            id={report.id}
-            removeReport={this.removeReport}
-          />
-        ))}
+        <Container>
+          <APHeader />
+          <SearchBar getInputValue={this.inputValue} />
+          {this.state.filteredReports.map((report) => (
+            <Report
+              key={report.id}
+              name={report.candidateName}
+              company={report.companyName}
+              status={report.status}
+              interviewDate={report.interviewDate}
+              note={report.note}
+              phase={report.phase}
+              id={report.id}
+              removeReport={this.removeReport}
+            />
+          ))}
+        </Container>
       </div>
     );
   }
