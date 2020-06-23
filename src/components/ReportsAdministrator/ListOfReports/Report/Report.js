@@ -1,10 +1,13 @@
 import React from "react";
-import style from "./Report.module.scss";
-import InfoModal from "./InfoModal.js";
 import { useState } from "react";
-import { AiOutlineClose, AiOutlineEye } from "react-icons/ai";
 import Modal from "react-modal";
 import { Container } from "react-bootstrap";
+
+import style from "./Report.module.scss";
+
+import InfoModal from "./InfoModal.js";
+
+import { AiOutlineClose, AiOutlineEye } from "react-icons/ai";
 
 const Report = ({
   name,
@@ -14,7 +17,7 @@ const Report = ({
   note,
   phase,
   id,
-  removeReport
+  removeReport,
 }) => {
   const date = new Date(interviewDate);
 

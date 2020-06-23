@@ -1,6 +1,8 @@
 import React from "react";
 import { Button } from "react-bootstrap";
+
 import style from "./LoginForm.module.scss";
+
 import { isAdmin } from "../../../services/loginService";
 
 class LoginForm extends React.Component {
