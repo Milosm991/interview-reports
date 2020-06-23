@@ -5,7 +5,11 @@ import { Candidate } from "../Candidate/Candidate";
 
 import style from "./SelectCandidates.module.scss";
 
-const SelectCandidate = ({ characters, getCandidate, candidateImage }) => {
+const SelectCandidate = ({
+  characters,
+  getCandidate,
+  next,
+}) => {
   return (
     <Row>
       <div
@@ -15,16 +19,7 @@ const SelectCandidate = ({ characters, getCandidate, candidateImage }) => {
           <span className={style.span}>1.</span> Select Candidate
         </p>
         <p className={`${style.paragraph}`}>2. Select Company </p>
-        <p className={`${style.paragraph} `}>3. Fill Report Deatails</p>
-        <div>
-          {candidateImage !== "" && candidateImage !== null ? (
-            <img
-              src={`${candidateImage}`}
-              className={style.Candidate__image}
-              alt="avatar"
-            />
-          ) : null}
-        </div>
+        <p className={`${style.paragraph} `}>3. Fill Report Deatails</p>      
       </div>
       <div className={`${style.candidates} col-10`}>
         <Row>
@@ -43,7 +38,9 @@ const SelectCandidate = ({ characters, getCandidate, candidateImage }) => {
             xs={{ span: 10, offset: 2 }}
             className="d-flex justify-content-end mt-4"
           >
-            <Button className={`${style.btn} mr-5`}>Next</Button>
+            <Button className={`${style.btn} mr-5`} onClick={next}>
+              Next
+            </Button>
           </Col>
         </Row>
       </div>
