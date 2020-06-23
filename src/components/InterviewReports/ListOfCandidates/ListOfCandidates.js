@@ -5,7 +5,7 @@ import style from "./ListOfCandidates.module.scss";
 import { CandidateService } from "../../../services/CandidateService";
 import { IRHeader } from "../IRHeader/IRHeader";
 import { SearchBar } from "../../SearchBar/SearchBar.js";
-import { search } from '../../../entities/search'
+import { search } from "../../../entities/search";
 
 class ListOfCandidates extends React.Component {
   constructor(props) {
@@ -24,11 +24,10 @@ class ListOfCandidates extends React.Component {
       })
     );
   }
-  
+
   getInputValue = (value) => {
-    const filteredArray = this.state.filteredCandidates.filter((candidate) =>
-      candidate.name.toLowerCase().includes(value.toLowerCase())
-    );
+    let filteredArray = search(this.state.candidates, value);
+
     this.setState({ filteredCandidates: filteredArray });
     if (value === "") {
       CandidateService.fetchAll().then((candidates) =>
@@ -39,7 +38,6 @@ class ListOfCandidates extends React.Component {
       );
     }
   };
-
 
   render() {
     return (

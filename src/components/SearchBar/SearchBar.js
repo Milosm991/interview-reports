@@ -6,7 +6,7 @@ class SearchBar extends React.Component {
   getValue = (e) => {
     this.props.getInputValue(e.target.value);
   };
-  
+
   render() {
     return (
       <div className={style.search}>
