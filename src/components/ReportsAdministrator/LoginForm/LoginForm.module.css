@@ -16,5 +16,9 @@
   border-radius: 10px;
 }
 .LoginForm__btn {
-  margin-top: 8em;
+  margin-top: 80px;
+}
+.error{
+  font-style: italic;
+  color: #be4b49;
 }
