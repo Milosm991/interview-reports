@@ -1,9 +1,9 @@
 import React from "react";
 import { Row, Col } from "react-bootstrap";
+import { IRHeader } from "../IRHeader/IRHeader";
 import { Candidate } from "./Candidate/Candidate";
 import style from "./ListOfCandidates.module.scss";
 import { CandidateService } from "../../../services/CandidateService";
-import { IRHeader } from "../IRHeader/IRHeader";
 
 class ListOfCandidates extends React.Component {
   constructor(props) {
@@ -22,23 +22,25 @@ class ListOfCandidates extends React.Component {
   }
 
   render() {
-    return (<div>
-      <IRHeader />
-      <Row>
-        <Col className={style.wrapper} xs={12}>
-          <Row>
-            {this.state.candidates.map((candidate, i) => (
-              <Candidate
-                key={i}
-                avatar={candidate.avatar}
-                name={candidate.name}
-                email={candidate.email}
-              />
-            ))}
-          </Row>
-        </Col>
-      </Row>
-    </div>
+    return (
+      <div>
+        <IRHeader />
+        <Row>
+          <Col className={style.wrapper} xs={12}>
+            <Row>
+              {this.state.candidates.map((candidate, i) => (
+                <Candidate
+                  key={i}
+                  id={candidate.id}
+                  avatar={candidate.avatar}
+                  name={candidate.name}
+                  email={candidate.email}
+                />
+              ))}
+            </Row>
+          </Col>
+        </Row>
+      </div>
     );
   }
 }
