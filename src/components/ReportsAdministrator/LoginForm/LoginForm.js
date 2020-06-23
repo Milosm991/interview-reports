@@ -1,8 +1,7 @@
 import React from "react";
 import { Button } from "react-bootstrap";
-import style from "./LoginForm.module.css";
+import style from "./LoginForm.module.scss";
 import { isAdmin } from "../../../services/loginService";
-import { Link } from "react-router-dom";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -24,7 +23,7 @@ class LoginForm extends React.Component {
     isAdmin(this.state)
       .then((res) => {
         if (res.statusText === "OK") {
-          window.location.pathname = `/admin/listofreports`;
+          window.location.pathname = `/admin/list_of_reports`;
           sessionStorage.setItem("accsesKey", res.data.accessToken);
         }
       })

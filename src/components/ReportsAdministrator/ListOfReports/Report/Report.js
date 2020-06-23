@@ -1,21 +1,28 @@
 import React from "react";
-import style from "./Report.module.css";
+import style from "./Report.module.scss";
 import InfoModal from "./InfoModal.js";
 import { useState } from "react";
-import { AiOutlineClose } from "react-icons/ai";
+import { AiOutlineClose, AiOutlineEye } from "react-icons/ai";
 import Modal from "react-modal";
+import { Container } from "react-bootstrap";
 
-const Report = ({ name, company, status, interviewDate, note, phase }) => {
+const Report = ({
+  name,
+  company,
+  status,
+  interviewDate,
+  note,
+  phase,
+  id,
+  removeReport
+}) => {
   const date = new Date(interviewDate);
 
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
-    <>
-      <div
-        className={`row ${style.aboutReport}`}
-        onClick={() => setModalIsOpen(true)}
-      >
+    <Container>
+      <div className={`row ${style.aboutReport}`}>
         <div className="col-3">
           <h4>{company}</h4>
           <span>Company</span>
@@ -35,7 +42,10 @@ const Report = ({ name, company, status, interviewDate, note, phase }) => {
           <span>Status</span>
         </div>
         <div className="col-1">
-          <AiOutlineClose />
+          <AiOutlineEye onClick={() => setModalIsOpen(true)} />
+        </div>
+        <div className="col-1">
+          <AiOutlineClose onClick={() => removeReport(id)} />
         </div>
       </div>
 
@@ -59,7 +69,7 @@ const Report = ({ name, company, status, interviewDate, note, phase }) => {
           X
         </button>
       </Modal>
-    </>
+    </Container>
   );
 };
 export default Report;
