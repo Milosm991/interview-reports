@@ -6,6 +6,7 @@ import { APHeader } from "../APHeader/APHeader";
 import { SearchBar } from "../../SearchBar/SearchBar.js";
 import { Container } from "react-bootstrap";
 import { NothingFound } from "../../NothingFound/NothingFound.js";
+import { removeReportFromServer } from '../../../services/AuthService'
 
 import style from "./ListOfReports.module.scss";
 
@@ -25,9 +26,12 @@ class ListOfReports extends React.Component {
   }
 
   removeReport = (id) => {
-    const newArray = this.state.reports.filter((report) => report.id !== id);
+    const newArray = this.state.filteredReports.filter(
+      (report) => report.id !== id
+    );
 
-    this.setState({ reports: newArray });
+    this.setState({ filteredReports: newArray });
+    removeReportFromServer(id)
   };
 
   inputValue = (value) => {
