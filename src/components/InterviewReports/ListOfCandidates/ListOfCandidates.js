@@ -1,11 +1,13 @@
 import React from "react";
-import { Row, Col, Container } from "react-bootstrap";
-import { Candidate } from "./Candidate/Candidate";
 import style from "./ListOfCandidates.module.scss";
-import { CandidateService } from "../../../services/CandidateService";
+
+import { Footer } from "../../Footer/Footer";
 import { IRHeader } from "../IRHeader/IRHeader";
-import { SearchBar } from "../../SearchBar/SearchBar.js";
+import { Candidate } from "./Candidate/Candidate";
 import { search } from "../../../entities/search";
+import { Row, Col, Container } from "react-bootstrap";
+import { SearchBar } from "../../SearchBar/SearchBar.js";
+import { CandidateService } from "../../../services/CandidateService";
 
 class ListOfCandidates extends React.Component {
   constructor(props) {
@@ -41,9 +43,9 @@ class ListOfCandidates extends React.Component {
 
   render() {
     return (
-      <div>
+      <>
+        <IRHeader />
         <Container>
-          <IRHeader />
           <SearchBar getInputValue={this.getInputValue} />
           <Row>
             <Col className={style.wrapper} xs={12}>
@@ -51,6 +53,7 @@ class ListOfCandidates extends React.Component {
                 {this.state.filteredCandidates.map((candidate, i) => (
                   <Candidate
                     key={i}
+                    id={candidate.id}
                     avatar={candidate.avatar}
                     name={candidate.name}
                     email={candidate.email}
@@ -60,7 +63,8 @@ class ListOfCandidates extends React.Component {
             </Col>
           </Row>
         </Container>
-      </div>
+        <Footer />
+      </>
     );
   }
 }

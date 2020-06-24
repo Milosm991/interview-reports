@@ -64,4 +64,4 @@ class ListOfReports extends React.Component {
     );
   }
 }
-export default ListOfReports;
+export { ListOfReports };
