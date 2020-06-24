@@ -1,11 +1,12 @@
 import React from "react";
-import { ListOfCandidates } from "./components/InterviewReports/ListOfCandidates/ListOfCandidates";
-import "./App.css";
 import { Switch, Route } from "react-router-dom";
+
+import { ListOfCandidates } from "./components/InterviewReports/ListOfCandidates/ListOfCandidates";
 import { LoginForm } from "./components/ReportsAdministrator/LoginForm/LoginForm";
 import { SubmitReport } from './components/ReportsAdministrator/LoginForm/SubmitReport/SubmitReport'
-
 import ListOfReports from "./components/ReportsAdministrator/ListOfReports/ListOfReports";
+
+import "./App.css";
 
 function App() {
   return (
