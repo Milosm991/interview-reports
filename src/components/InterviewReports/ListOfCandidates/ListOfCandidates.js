@@ -44,6 +44,7 @@ class ListOfCandidates extends React.Component {
                 this.state.filteredCandidates.map((candidate, i) => (
                   <Candidate
                     key={i}
+                    id={candidate.id}
                     avatar={candidate.avatar}
                     name={candidate.name}
                     email={candidate.email}

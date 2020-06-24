@@ -1,11 +1,14 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { SelectCompany } from "./SelectCompany/SelectCompany";
 import { APHeader } from "../../APHeader/APHeader";
 import { SelectCandidate } from "./SelectCandidate/SelectCandidate";
 import { CompanyService } from "../../../../services/CompanyServise";
 import { CandidatesServise } from "../../../../services/CandidatesServise";
+import { FillReportDetails } from "./FillReportDetails/FillReportDetails";
+
+import { SubmitNewReport } from "../../../../services/AuthService";
 
 class SubmitReport extends React.Component {
   constructor(props) {
@@ -20,7 +23,7 @@ class SubmitReport extends React.Component {
       candidateName: "",
       companyId: null,
       companyName: "",
-      interviewDate: "",
+      interviewDate: null,
       phase: "",
       status: "",
       note: "",
@@ -70,6 +73,28 @@ class SubmitReport extends React.Component {
       $selectedCandidated.classList.remove("bg-secondary");
     }
     currentTarget.classList.add("bg-secondary");
+  };
+  getReportDetails = (event, currentTarget) => {
+    if (
+      currentTarget.value === "cv" ||
+      currentTarget.value === "hr" ||
+      currentTarget.value === "tech" ||
+      currentTarget.value === "final"
+    ) {
+      this.setState({ phase: currentTarget.value });
+    } else if (
+      currentTarget.value === "Passed" ||
+      currentTarget.value === "Declined"
+    ) {
+      this.setState({ status: currentTarget.value });
+    } else if (currentTarget.type === "date") {
+      this.setState({ interviewDate: currentTarget.value });
+    } else {
+      this.setState({ note: currentTarget.value });
+    }
+  };
+  submitReport = () => {
+    SubmitNewReport(this.state);
   };
   nextStep = (event) => {
     let counter = this.state.steps + 1;
@@ -127,7 +152,15 @@ class SubmitReport extends React.Component {
                 ) : null}
               </Col>
             </Row>
-          ) : null}
+          ) : (
+            <FillReportDetails
+              candidateName={this.state.candidateName}
+              companyName={this.state.companyName}
+              prev={this.previousStep}
+              getDetailsInfo={this.getReportDetails}
+              submit={this.submitReport}
+            />
+          )}
         </div>
       </Container>
     );

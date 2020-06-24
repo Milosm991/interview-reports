@@ -1,0 +1,24 @@
+.interviewDate {
+  display: flex;
+  flex-direction: column;
+}
+.phase {
+  display: flex;
+  flex-direction: column;
+}
+.status {
+  display: flex;
+  flex-direction: column;
+}
+.notes {
+  height: 7em;
+}
+.butons {
+  display: flex;
+  justify-content: space-evenly;
+}
+.span {
+  padding: 2px;
+  border: 1px solid black;
+  border-radius: 50%;
+}
