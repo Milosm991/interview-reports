@@ -36,29 +36,32 @@ class ListOfCandidates extends React.Component {
 
   render() {
     return (
-      <Container>
+      <>
         <IRHeader />
-        <SearchBar getInputValue={this.getInputValue} />
-        <Row>
-          <Col className={style.wrapper} xs={12}>
-            <Row>
-              {this.state.filteredCandidates.length ? (
-                this.state.filteredCandidates.map((candidate, i) => (
-                  <Candidate
-                    key={i}
-                    id={candidate.id}
-                    avatar={candidate.avatar}
-                    name={candidate.name}
-                    email={candidate.email}
-                  />
-                ))
-              ) : (
-                <NothingFound />
-              )}
-            </Row>
-          </Col>
-        </Row>
-      </Container>
+        <Container>
+          <SearchBar getInputValue={this.getInputValue} />
+          <Row>
+            <Col className={style.wrapper} xs={12}>
+              <Row>
+                {this.state.filteredCandidates.length ? (
+                  this.state.filteredCandidates.map((candidate, i) => (
+                    <Candidate
+                      key={i}
+                      id={candidate.id}
+                      avatar={candidate.avatar}
+                      name={candidate.name}
+                      email={candidate.email}
+                    />
+                  ))
+                ) : (
+                  <NothingFound />
+                )}
+              </Row>
+            </Col>
+          </Row>
+        </Container>
+        <Footer />
+      </>
     );
   }
 }

@@ -2,8 +2,9 @@ import React from "react";
 import Modal from "react-modal";
 import style from "./ReportsTable.module.scss";
 
-import { AiOutlineClose, AiOutlineEye } from "react-icons/ai";
+import { AiOutlineEye } from "react-icons/ai";
 import { ReportService } from "../../../../services/ReportService";
+
 import InfoModal from "../../../ReportsAdministrator/ListOfReports/Report/InfoModal";
 
 class ReportsTable extends React.Component {
@@ -13,6 +14,7 @@ class ReportsTable extends React.Component {
       report: [],
       modalIsOpen: false,
       setModalIsOpen: false,
+      date: [],
     };
   }
 
@@ -43,11 +45,11 @@ class ReportsTable extends React.Component {
                 <td>{report.companyName}</td>
                 <td>{report.interviewDate}</td>
                 <td>{report.status}</td>
-                <td>
+                <td id={i}>
                   <AiOutlineEye
                     onClick={() =>
                       this.setState({
-                        setModalIsOpen: true,
+                        modalIsOpen: true,
                       })
                     }
                   />
@@ -56,34 +58,38 @@ class ReportsTable extends React.Component {
             ))}
           </tbody>
         </table>
-        <Modal
-          isOpen={this.state.modalIsOpen}
-          onRequestClose={() =>
-            this.setState({
-              setModalIsOpen: false,
-            })
-          }
-          className={style.modal}
-        >
-          <InfoModal
-            name={this.state.report.candidateName}
-            company={this.state.report.companyName}
-            status={this.state.report.status}
-            date={this.state.report.candidateName}
-            note={this.state.report.Name}
-            phase={this.state.report.phase}
-          />
-          <button
-            onClick={() =>
-              this.setState({
-                setModalIsOpen: false,
-              })
-            }
-            className={style.modalBtn}
-          >
-            X
-          </button>
-        </Modal>
+        {this.state.modalIsOpen
+          ? this.state.report.map((report) => (
+              <Modal
+                isOpen={this.state.modalIsOpen}
+                onRequestClose={() =>
+                  this.setState({
+                    setModalIsOpen: false,
+                  })
+                }
+                className={style.modal}
+              >
+                <InfoModal
+                  name={report.candidateName}
+                  company={report.companyName}
+                  status={report.status}
+                  date={new Date(report.interviewDate)}
+                  note={report.Name}
+                  phase={report.phase}
+                />
+                <button
+                  onClick={() =>
+                    this.setState({
+                      setModalIsOpen: false,
+                    })
+                  }
+                  className={style.modalBtn}
+                >
+                  X
+                </button>
+              </Modal>
+            ))
+          : null}
       </>
     );
   }
