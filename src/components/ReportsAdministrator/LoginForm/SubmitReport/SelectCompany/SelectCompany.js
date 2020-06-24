@@ -45,7 +45,9 @@ const SelectCompany = ({
 
           {filteredCompanies.length ? (
             filteredCompanies.map((company) => (
-              <Company company={company} getInfoForCompany={getCompany} />
+              <Col xs={10} key={company.id}>
+                <Company company={company} getInfoForCompany={getCompany} />
+              </Col>
             ))
           ) : (
             <NothingFound />

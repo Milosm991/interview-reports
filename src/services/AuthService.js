@@ -1,7 +1,14 @@
 import axios from "axios";
 
 const isAdmin = ({ email, password }) => {
-  return axios.post("http://localhost:3333/login", { email, password });
+  return axios
+    .post("http://localhost:3333/login", { email, password })
+    .then((res) => {
+      const token = res.data.accessToken;
+      sessionStorage.setItem("accsesKey", JSON.stringify(token));
+
+      return token;
+    });
 };
 
 const SubmitNewReport = ({
@@ -15,10 +22,9 @@ const SubmitNewReport = ({
   note,
 }) => {
   let key = JSON.parse(sessionStorage.getItem("accsesKey"));
-  let id = Math.floor(Math.random() * 99999999);
+
   const allData = {
     candidateId: candidateId,
-    id: id,
     candidateName: candidateName,
     companyId: companyId,
     companyName: companyName,
@@ -27,16 +33,15 @@ const SubmitNewReport = ({
     status: status,
     note: note,
   };
-  let accsessKey = `Authorization: Bearer ${key}`;
-  axios.put(
-    "http://localhost:3333/api/reports",
-    {
-      headers: accsessKey,
+
+  return axios({
+    method: "POST",
+    url: "http://localhost:3333/api/reports",
+    headers: {
+      Authorization: `Bearer ${key}`,
     },
-    {
-      data: allData,
-    }
-  );
+    data: allData,
+  });
 };
 
 export { isAdmin, SubmitNewReport };

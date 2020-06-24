@@ -38,7 +38,7 @@ const SelectCandidate = ({
           </Col>
           {filteredCandidates.length ? (
             filteredCandidates.map((item, i) => (
-              <Col xs={6}>
+              <Col xs={6} key={item.id}>
                 <Candidate
                   key={i}
                   candidate={item}
