@@ -2,10 +2,24 @@ import React from "react";
 
 import { Row, Col, Button } from "react-bootstrap";
 import { Candidate } from "../Candidate/Candidate";
+import { SearchBar } from "../../../../SearchBar/SearchBar";
+import { search } from "../../../../../entities/search";
 
 import style from "./SelectCandidates.module.scss";
+import { NothingFound } from "../../../../NothingFound/NothingFound";
 
-const SelectCandidate = ({ characters, getCandidate, next }) => {
+const SelectCandidate = ({
+  candidates,
+  filteredCandidates,
+  getCandidate,
+  next,
+  searchCandidates,
+}) => {
+  const getValue = (value) => {
+    let filteredCandidates = search(candidates, value);
+    searchCandidates(filteredCandidates);
+  };
+
   return (
     <Row>
       <div
@@ -19,17 +33,22 @@ const SelectCandidate = ({ characters, getCandidate, next }) => {
       </div>
       <div className={`${style.candidates} col-10`}>
         <Row>
-          {characters !== null
-            ? characters.map((item, i) => (
-                <Col xs={6}>
-                  <Candidate
-                    key={i}
-                    candidate={item}
-                    getInfoForSubmit={getCandidate}
-                  />
-                </Col>
-              ))
-            : null}
+          <Col xs={10} className="d-flex flex-row-reverse ">
+            <SearchBar getInputValue={getValue} />
+          </Col>
+          {filteredCandidates.length ? (
+            filteredCandidates.map((item, i) => (
+              <Col xs={6}>
+                <Candidate
+                  key={i}
+                  candidate={item}
+                  getInfoForSubmit={getCandidate}
+                />
+              </Col>
+            ))
+          ) : (
+            <NothingFound />
+          )}
           <Col
             xs={{ span: 10, offset: 2 }}
             className="d-flex justify-content-end mt-4"

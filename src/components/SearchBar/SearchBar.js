@@ -14,7 +14,7 @@ class SearchBar extends React.Component {
         <input
           type="search"
           placeholder="Search"
-          onKeyUp={this.getValue}
+          onChange={this.getValue}
         ></input>
       </div>
     );
