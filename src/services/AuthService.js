@@ -44,4 +44,14 @@ const SubmitNewReport = ({
   });
 };
 
-export { isAdmin, SubmitNewReport };
+const removeReportFromServer = (id) => {
+  let key = JSON.parse(sessionStorage.getItem("accsesKey"));
+  return axios({
+    method: "DELETE",
+    url: `http://localhost:3333/api/reports/${id}`,
+    headers: {
+      Authorization: `Bearer ${key}`,
+    },
+  });
+};
+export { isAdmin, SubmitNewReport, removeReportFromServer };
