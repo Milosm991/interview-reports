@@ -21,7 +21,7 @@ const SelectCandidate = ({ characters, getCandidate, next }) => {
         <Row>
           {characters !== null
             ? characters.map((item, i) => (
-                <Col xs={6}>
+                <Col xs={6} key={i}>
                   <Candidate
                     key={i}
                     candidate={item}

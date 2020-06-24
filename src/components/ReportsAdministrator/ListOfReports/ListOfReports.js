@@ -5,7 +5,6 @@ import style from "./ListOfReports.module.scss";
 import { APHeader } from "../APHeader/APHeader";
 import { SearchBar } from "../../SearchBar/SearchBar.js";
 import { Container } from "react-bootstrap";
-import { search } from "../../../entities/search";
 
 class ListOfReports extends React.Component {
   constructor(props) {
@@ -36,6 +35,7 @@ class ListOfReports extends React.Component {
       ) {
         return true;
       }
+      return null;
     });
     this.setState({ filteredReports: filteredArray });
   };
