@@ -1,10 +1,15 @@
-import Axios from "axios";
+import axios from "axios";
 
 class CandidateService {
   static fetchAll() {
-    return Axios.get("http://localhost:3333/api/candidates").then(
-      (candidates) => candidates.data
-    );
+    return axios
+      .get("http://localhost:3333/api/candidates")
+      .then((candidates) => candidates.data);
+  }
+  static fetch(id) {
+    return axios
+      .get(`http://localhost:3333/api/candidates/${id}`)
+      .then((candidate) => candidate.data);
   }
 }
 
