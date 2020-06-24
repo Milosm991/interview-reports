@@ -3,7 +3,7 @@ import { Button } from "react-bootstrap";
 
 import style from "./LoginForm.module.scss";
 
-import { isAdmin } from "../../../services/loginService";
+import { isAdmin } from "../../../services/AuthService";
 
 class LoginForm extends React.Component {
   constructor(props) {
@@ -23,11 +23,8 @@ class LoginForm extends React.Component {
 
   loginCheck = () => {
     isAdmin(this.state)
-      .then((res) => {
-        if (res.statusText === "OK") {
-          window.location.pathname = `/admin/list_of_reports`;
-          sessionStorage.setItem("accsesKey", res.data.accessToken);
-        }
+      .then(() => {
+        this.props.history.push(`/admin/list_of_reports`);
       })
       .catch((res) =>
         this.setState({ errorMessage: "Sorry, you need preemision" })

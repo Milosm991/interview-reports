@@ -1,11 +1,13 @@
 import React from "react";
 import Report from "./Report/Report.js";
+
 import { allReports } from "../../../services/reportsService.js";
-import style from "./ListOfReports.module.scss";
 import { APHeader } from "../APHeader/APHeader";
 import { SearchBar } from "../../SearchBar/SearchBar.js";
 import { Container } from "react-bootstrap";
-import { search } from "../../../entities/search";
+import { NothingFound } from "../../NothingFound/NothingFound.js";
+
+import style from "./ListOfReports.module.scss";
 
 class ListOfReports extends React.Component {
   constructor(props) {
@@ -36,6 +38,7 @@ class ListOfReports extends React.Component {
       ) {
         return true;
       }
+      return null;
     });
     this.setState({ filteredReports: filteredArray });
   };
@@ -46,19 +49,23 @@ class ListOfReports extends React.Component {
         <Container>
           <APHeader />
           <SearchBar getInputValue={this.inputValue} />
-          {this.state.filteredReports.map((report) => (
-            <Report
-              key={report.id}
-              name={report.candidateName}
-              company={report.companyName}
-              status={report.status}
-              interviewDate={report.interviewDate}
-              note={report.note}
-              phase={report.phase}
-              id={report.id}
-              removeReport={this.removeReport}
-            />
-          ))}
+          {this.state.filteredReports.length ? (
+            this.state.filteredReports.map((report) => (
+              <Report
+                key={report.id}
+                name={report.candidateName}
+                company={report.companyName}
+                status={report.status}
+                interviewDate={report.interviewDate}
+                note={report.note}
+                phase={report.phase}
+                id={report.id}
+                removeReport={this.removeReport}
+              />
+            ))
+          ) : (
+            <NothingFound />
+          )}
         </Container>
       </div>
     );

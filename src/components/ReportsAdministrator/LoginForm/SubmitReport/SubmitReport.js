@@ -1,24 +1,29 @@
 import React from "react";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { SelectCompany } from "./SelectCompany/SelectCompany";
 import { APHeader } from "../../APHeader/APHeader";
 import { SelectCandidate } from "./SelectCandidate/SelectCandidate";
 import { CompanyService } from "../../../../services/CompanyServise";
 import { CandidatesServise } from "../../../../services/CandidatesServise";
+import { FillReportDetails } from "./FillReportDetails/FillReportDetails";
+
+import { SubmitNewReport } from "../../../../services/AuthService";
 
 class SubmitReport extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       steps: 1,
-      characters: null,
+      candidates: [],
+      filteredCandidates: [],
       companies: null,
+      filteredCompanies: [],
       candidateId: null,
       candidateName: "",
       companyId: null,
       companyName: "",
-      interviewDate: "",
+      interviewDate: null,
       phase: "",
       status: "",
       note: "",
@@ -28,13 +33,20 @@ class SubmitReport extends React.Component {
   componentDidMount() {
     new CandidatesServise()
       .fetchAll()
-      .then((res) => this.setState({ characters: res.data }));
+      .then((res) =>
+        this.setState({ candidates: res.data, filteredCandidates: res.data })
+      );
     new CompanyService()
       .fetchAll()
-      .then((result) => this.setState({ companies: result.data }));
+      .then((result) =>
+        this.setState({
+          companies: result.data,
+          filteredCompanies: result.data,
+        })
+      );
   }
   getCandidate = (item, currentTarget) => {
-    let a = this.state.characters.filter((character) => item === character);
+    let a = this.state.candidates.filter((character) => item === character);
     this.setState({
       candidateId: a[0].id,
       candidateName: a[0].name,
@@ -62,6 +74,28 @@ class SubmitReport extends React.Component {
     }
     currentTarget.classList.add("bg-secondary");
   };
+  getReportDetails = (event, currentTarget) => {
+    if (
+      currentTarget.value === "cv" ||
+      currentTarget.value === "hr" ||
+      currentTarget.value === "tech" ||
+      currentTarget.value === "final"
+    ) {
+      this.setState({ phase: currentTarget.value });
+    } else if (
+      currentTarget.value === "Passed" ||
+      currentTarget.value === "Declined"
+    ) {
+      this.setState({ status: currentTarget.value });
+    } else if (currentTarget.type === "date") {
+      this.setState({ interviewDate: currentTarget.value });
+    } else {
+      this.setState({ note: currentTarget.value });
+    }
+  };
+  submitReport = () => {
+    SubmitNewReport(this.state);
+  };
   nextStep = (event) => {
     let counter = this.state.steps + 1;
     if (counter === 4) {
@@ -73,19 +107,31 @@ class SubmitReport extends React.Component {
     let counter = this.state.steps - 1;
     this.setState({ steps: counter });
   };
+
+  searchedCandidates = (filteredArray) => {
+    this.setState({ filteredCandidates: filteredArray });
+  };
+
+  searchedCompanies = (filteredCompanies) => {
+    this.setState({ filteredCompanies });
+  };
+
   render() {
     return (
       <Container>
         <APHeader />
+
         <div className="mt-5">
           {this.state.steps === 1 ? (
             <Row>
               <Col xs={12}>
-                {this.state.characters !== null ? (
+                {this.state.candidates !== null ? (
                   <SelectCandidate
-                    characters={this.state.characters}
+                    filteredCandidates={this.state.filteredCandidates}
+                    candidates={this.state.candidates}
                     getCandidate={this.getCandidate}
                     next={this.nextStep}
+                    searchCandidates={this.searchedCandidates}
                   />
                 ) : null}
               </Col>
@@ -95,16 +141,26 @@ class SubmitReport extends React.Component {
               <Col xs={12}>
                 {this.state.companies !== null ? (
                   <SelectCompany
+                    filteredCompanies={this.state.filteredCompanies}
                     companies={this.state.companies}
                     candidateName={this.state.candidateName}
                     getCompany={this.getCompany}
                     next={this.nextStep}
                     prev={this.previousStep}
+                    searchedCompanies={this.searchedCompanies}
                   />
                 ) : null}
               </Col>
             </Row>
-          ) : null}
+          ) : (
+            <FillReportDetails
+              candidateName={this.state.candidateName}
+              companyName={this.state.companyName}
+              prev={this.previousStep}
+              getDetailsInfo={this.getReportDetails}
+              submit={this.submitReport}
+            />
+          )}
         </div>
       </Container>
     );
