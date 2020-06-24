@@ -5,7 +5,13 @@ import { Company } from "./Company/Company";
 
 import style from "./SelectCompany.module.scss";
 
-const SelectCompany = ({ companies, next, getCompany, candidateName }) => {
+const SelectCompany = ({
+  companies,
+  next,
+  getCompany,
+  candidateName,
+  prev,
+}) => {
   return (
     <Row>
       <div
@@ -15,7 +21,7 @@ const SelectCompany = ({ companies, next, getCompany, candidateName }) => {
         <p className={`${style.paragraph} font-weight-bold`}>
           <span className={style.span}>2.</span> Select Company{" "}
         </p>
-        <p className={`${style.paragraph} `}>3. Fill Report Deatails</p>
+        <p className={`${style.paragraph} `}>3. Fill Report Details</p>
         <div>
           <div className="mt-4">
             <p className={style.candidate}>Candidate:</p>
@@ -23,7 +29,6 @@ const SelectCompany = ({ companies, next, getCompany, candidateName }) => {
           </div>
         </div>
       </div>
-
       <Col xs={10}>
         <div className={style.companies}>
           {companies.map((company) => (
@@ -31,7 +36,8 @@ const SelectCompany = ({ companies, next, getCompany, candidateName }) => {
           ))}
         </div>
       </Col>
-      <Col xd={12} className="d-flex flex-row-reverse">
+      <Col xd={8} className="d-flex justify-content-around mt-5">
+        <Button onClick={prev}>Prev</Button>
         <Button onClick={next}>Next</Button>
       </Col>
     </Row>

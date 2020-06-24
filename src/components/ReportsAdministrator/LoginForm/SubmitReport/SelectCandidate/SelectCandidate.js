@@ -5,11 +5,7 @@ import { Candidate } from "../Candidate/Candidate";
 
 import style from "./SelectCandidates.module.scss";
 
-const SelectCandidate = ({
-  characters,
-  getCandidate,
-  next,
-}) => {
+const SelectCandidate = ({ characters, getCandidate, next }) => {
   return (
     <Row>
       <div
@@ -19,7 +15,7 @@ const SelectCandidate = ({
           <span className={style.span}>1.</span> Select Candidate
         </p>
         <p className={`${style.paragraph}`}>2. Select Company </p>
-        <p className={`${style.paragraph} `}>3. Fill Report Deatails</p>      
+        <p className={`${style.paragraph} `}>3. Fill Report Details</p>
       </div>
       <div className={`${style.candidates} col-10`}>
         <Row>

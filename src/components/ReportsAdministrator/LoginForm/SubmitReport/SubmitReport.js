@@ -69,7 +69,10 @@ class SubmitReport extends React.Component {
     }
     this.setState({ steps: counter });
   };
-  // previusStep = () => {};
+  previousStep = () => {
+    let counter = this.state.steps - 1;
+    this.setState({ steps: counter });
+  };
   render() {
     return (
       <Container>
@@ -96,6 +99,7 @@ class SubmitReport extends React.Component {
                     candidateName={this.state.candidateName}
                     getCompany={this.getCompany}
                     next={this.nextStep}
+                    prev={this.previousStep}
                   />
                 ) : null}
               </Col>
