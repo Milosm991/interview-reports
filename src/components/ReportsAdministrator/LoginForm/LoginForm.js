@@ -24,10 +24,9 @@ class LoginForm extends React.Component {
   loginCheck = () => {
     isAdmin(this.state)
       .then((res) => {
-        console.log(res);
         if (res.statusText === "OK") {
-          // window.location.pathname = `/admin/list_of_reports`;
-          // sessionStorage.setItem("accsesKey", res.data.accessToken);
+          window.location.pathname = `/admin/list_of_reports`;
+          sessionStorage.setItem("accsesKey", res.data.accessToken);
         }
       })
       .catch((res) =>

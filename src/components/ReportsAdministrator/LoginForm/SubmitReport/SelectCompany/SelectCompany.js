@@ -31,8 +31,8 @@ const SelectCompany = ({
       </div>
       <Col xs={10}>
         <div className={style.companies}>
-          {companies.map((company) => (
-            <Company company={company} getInfoForCompany={getCompany} />
+          {companies.map((company, i) => (
+            <Company key={i} company={company} getInfoForCompany={getCompany} />
           ))}
         </div>
       </Col>

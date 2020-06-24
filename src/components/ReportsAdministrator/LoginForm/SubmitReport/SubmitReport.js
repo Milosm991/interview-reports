@@ -15,7 +15,7 @@ class SubmitReport extends React.Component {
     super(props);
     this.state = {
       steps: 1,
-      characters: null,
+      candidates: null,
       companies: null,
       candidateId: null,
       candidateName: "",
@@ -31,13 +31,13 @@ class SubmitReport extends React.Component {
   componentDidMount() {
     new CandidatesServise()
       .fetchAll()
-      .then((res) => this.setState({ characters: res.data }));
+      .then((res) => this.setState({ candidates: res.data }));
     new CompanyService()
       .fetchAll()
       .then((result) => this.setState({ companies: result.data }));
   }
   getCandidate = (item, currentTarget) => {
-    let a = this.state.characters.filter((character) => item === character);
+    let a = this.state.candidates.filter((character) => item === character);
     this.setState({
       candidateId: a[0].id,
       candidateName: a[0].name,
@@ -66,7 +66,6 @@ class SubmitReport extends React.Component {
     currentTarget.classList.add("bg-secondary");
   };
   getReportDetails = (event, currentTarget) => {
-    console.log(currentTarget.type === "text");
     if (
       currentTarget.value === "cv" ||
       currentTarget.value === "hr" ||
@@ -107,9 +106,9 @@ class SubmitReport extends React.Component {
           {this.state.steps === 1 ? (
             <Row>
               <Col xs={12}>
-                {this.state.characters !== null ? (
+                {this.state.candidates !== null ? (
                   <SelectCandidate
-                    characters={this.state.characters}
+                    characters={this.state.candidates}
                     getCandidate={this.getCandidate}
                     next={this.nextStep}
                   />

@@ -27,9 +27,7 @@ class FillReportDetails extends React.Component {
               {this.props.candidateName}
             </span>
             <p className={style.candidate}>Company:</p>
-            <span className={style.candidate_name}>
-              {this.props.companyName}
-            </span>
+            <span className={style.company_name}>{this.props.companyName}</span>
           </div>
         </div>
         <Col xs={10}>
@@ -68,8 +66,9 @@ class FillReportDetails extends React.Component {
                   onChange={(event) =>
                     this.props.getDetailsInfo(event, event.currentTarget)
                   }
+                  defaultValue="Select...."
                 >
-                  <option selected>Select...</option>
+                  <option>Select</option>
                   <option>Passed</option>
                   <option>Declined</option>
                 </select>

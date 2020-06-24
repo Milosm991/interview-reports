@@ -15,11 +15,11 @@ const SubmitNewReport = ({
   note,
 }) => {
   let key = JSON.parse(sessionStorage.getItem("accsesKey"));
-  let id = Math.floor(Math.random() * (99999999 - 10000000) + 10000000);
+  let id = Math.floor(Math.random() * 99999999);
   const allData = {
+    candidateId: candidateId,
     id: id,
     candidateName: candidateName,
-    candidateId: candidateId,
     companyId: companyId,
     companyName: companyName,
     interviewDate: interviewDate,
@@ -27,7 +27,16 @@ const SubmitNewReport = ({
     status: status,
     note: note,
   };
-  axios.put(`http://localhost:3333/api/reports?accessToken=${key}`, allData);
+  let accsessKey = `Authorization: Bearer ${key}`;
+  axios.put(
+    "http://localhost:3333/api/reports",
+    {
+      headers: accsessKey,
+    },
+    {
+      data: allData,
+    }
+  );
 };
 
 export { isAdmin, SubmitNewReport };

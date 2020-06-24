@@ -1,9 +1,9 @@
-import axios from "axios"
+import axios from "axios";
 
 class CandidatesServise {
-    fetchAll = () => {
-        return axios.get('http://localhost:3333/api/candidates')
-    }
+  fetchAll = () => {
+    return axios.get("http://localhost:3333/api/candidates");
+  };
 }
 
-export { CandidatesServise }
+export { CandidatesServise };
