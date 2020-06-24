@@ -2,21 +2,29 @@ import React from "react";
 import { Row, Col, Button } from "react-bootstrap";
 
 import { Company } from "./Company/Company";
+import { SearchBar } from "../../../../SearchBar/SearchBar";
+import { NothingFound } from "../../../../NothingFound/NothingFound";
+
+import { search } from "../../../../../entities/search";
 
 import style from "./SelectCompany.module.scss";
 
 const SelectCompany = ({
   companies,
+  filteredCompanies,
   next,
   getCompany,
   candidateName,
   prev,
+  searchedCompanies,
 }) => {
+  const getValue = (value) => {
+    let filteredCompanies = search(companies, value);
+    searchedCompanies(filteredCompanies);
+  };
   return (
     <Row>
-      <div
-        className={`${style.typeOfAction} col-lg-2 border-right border-dark`}
-      >
+      <div className={`${style.typeOfAction} col-2 border-right border-dark`}>
         <p className={`${style.paragraph}`}>1. Select Candidate</p>
         <p className={`${style.paragraph} font-weight-bold`}>
           <span className={style.span}>2.</span> Select Company{" "}
@@ -30,11 +38,19 @@ const SelectCompany = ({
         </div>
       </div>
       <Col xs={10}>
-        <div className={style.companies}>
-          {companies.map((company, i) => (
-            <Company key={i} company={company} getInfoForCompany={getCompany} />
-          ))}
-        </div>
+        <Row>
+          <Col xs={12} className="d-flex flex-row-reverse">
+            <SearchBar getInputValue={getValue} />
+          </Col>
+
+          {filteredCompanies.length ? (
+            filteredCompanies.map((company) => (
+              <Company company={company} getInfoForCompany={getCompany} />
+            ))
+          ) : (
+            <NothingFound />
+          )}
+        </Row>
       </Col>
       <Col xd={8} className="d-flex justify-content-around mt-5">
         <Button onClick={prev}>Prev</Button>

@@ -15,8 +15,10 @@ class SubmitReport extends React.Component {
     super(props);
     this.state = {
       steps: 1,
-      candidates: null,
+      candidates: [],
+      filteredCandidates: [],
       companies: null,
+      filteredCompanies: [],
       candidateId: null,
       candidateName: "",
       companyId: null,
@@ -31,10 +33,17 @@ class SubmitReport extends React.Component {
   componentDidMount() {
     new CandidatesServise()
       .fetchAll()
-      .then((res) => this.setState({ candidates: res.data }));
+      .then((res) =>
+        this.setState({ candidates: res.data, filteredCandidates: res.data })
+      );
     new CompanyService()
       .fetchAll()
-      .then((result) => this.setState({ companies: result.data }));
+      .then((result) =>
+        this.setState({
+          companies: result.data,
+          filteredCompanies: result.data,
+        })
+      );
   }
   getCandidate = (item, currentTarget) => {
     let a = this.state.candidates.filter((character) => item === character);
@@ -98,19 +107,31 @@ class SubmitReport extends React.Component {
     let counter = this.state.steps - 1;
     this.setState({ steps: counter });
   };
+
+  searchedCandidates = (filteredArray) => {
+    this.setState({ filteredCandidates: filteredArray });
+  };
+
+  searchedCompanies = (filteredCompanies) => {
+    this.setState({ filteredCompanies });
+  };
+
   render() {
     return (
       <Container>
         <APHeader />
+
         <div className="mt-5">
           {this.state.steps === 1 ? (
             <Row>
               <Col xs={12}>
                 {this.state.candidates !== null ? (
                   <SelectCandidate
-                    characters={this.state.candidates}
+                    filteredCandidates={this.state.filteredCandidates}
+                    candidates={this.state.candidates}
                     getCandidate={this.getCandidate}
                     next={this.nextStep}
+                    searchCandidates={this.searchedCandidates}
                   />
                 ) : null}
               </Col>
@@ -120,11 +141,13 @@ class SubmitReport extends React.Component {
               <Col xs={12}>
                 {this.state.companies !== null ? (
                   <SelectCompany
+                    filteredCompanies={this.state.filteredCompanies}
                     companies={this.state.companies}
                     candidateName={this.state.candidateName}
                     getCompany={this.getCompany}
                     next={this.nextStep}
                     prev={this.previousStep}
+                    searchedCompanies={this.searchedCompanies}
                   />
                 ) : null}
               </Col>
