@@ -6,6 +6,7 @@ import { Container } from "react-bootstrap";
 import style from "./Report.module.scss";
 
 import InfoModal from "./InfoModal.js";
+import Loader from 'react-loader-spinner'
 
 import { AiOutlineClose, AiOutlineEye } from "react-icons/ai";
 
@@ -18,6 +19,7 @@ const Report = ({
   phase,
   id,
   removeReport,
+  isLoading
 }) => {
   const date = new Date(interviewDate);
 
@@ -48,7 +50,14 @@ const Report = ({
           <AiOutlineEye onClick={() => setModalIsOpen(true)} />
         </div>
         <div className="col-1">
-          <AiOutlineClose onClick={() => removeReport(id)} />
+        {isLoading ? <Loader
+                          type="Circles"
+                          color="#000000"
+                          height={100}
+                          width={100}
+                          timeout={3000} /> 
+
+: <AiOutlineClose onClick={() => removeReport(id)} />}
         </div>
       </div>
 

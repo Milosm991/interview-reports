@@ -9,6 +9,7 @@ import { NothingFound } from "../../NothingFound/NothingFound.js";
 import { removeReportFromServer } from "../../../services/AuthService";
 import { isLoggedIn } from "../../../services/AuthService";
 
+
 import style from "./ListOfReports.module.scss";
 
 class ListOfReports extends React.Component {
@@ -18,6 +19,7 @@ class ListOfReports extends React.Component {
     this.state = {
       reports: [],
       filteredReports: [],
+      isLoading: null
     };
   }
   componentDidMount() {
@@ -27,12 +29,14 @@ class ListOfReports extends React.Component {
   }
 
   removeReport = (id) => {
+    this.setState({ isLoading: true}, 
+      () => removeReportFromServer(id).then(res => this.setState({ isLoading: false})))
+    
     const newArray = this.state.filteredReports.filter(
       (report) => report.id !== id
     );
-
+    
     this.setState({ filteredReports: newArray });
-    removeReportFromServer(id);
   };
 
   inputValue = (value) => {
@@ -70,6 +74,7 @@ class ListOfReports extends React.Component {
                 phase={report.phase}
                 id={report.id}
                 removeReport={this.removeReport}
+                isLoading={this.state.isLoading}
               />
             ))
           ) : (
@@ -81,3 +86,7 @@ class ListOfReports extends React.Component {
   }
 }
 export { ListOfReports };
+
+
+
+
