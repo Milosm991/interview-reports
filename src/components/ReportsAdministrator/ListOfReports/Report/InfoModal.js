@@ -17,9 +17,9 @@ const InfoModal = ({ name, company, status, note, date, phase }) => {
                     <Card.Subtitle className="mb-2 text-muted">
                       Company
                     </Card.Subtitle>
-                    <Card.Title>{`${date.getDay()}.${
+                    <Card.Title>{`${date.getDate()}.${
                       date.getMonth() + 1
-                    }.${date.getFullYear()}`}</Card.Title>
+                    }.${date.getFullYear()}.`}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
                       Interview Date
                     </Card.Subtitle>

@@ -13,8 +13,7 @@ class ReportsTable extends React.Component {
     this.state = {
       report: [],
       modalIsOpen: false,
-      setModalIsOpen: false,
-      date: [],
+      modalContent: null,
     };
   }
 
@@ -25,6 +24,12 @@ class ReportsTable extends React.Component {
       })
     );
   }
+
+  getMeMyModal = (e) => {
+    const id = e.currentTarget.id;
+    const report = this.state.report[id];
+    this.setState({ modalContent: report });
+  };
 
   render() {
     return (
@@ -45,51 +50,49 @@ class ReportsTable extends React.Component {
                 <td>{report.companyName}</td>
                 <td>{report.interviewDate}</td>
                 <td>{report.status}</td>
-                <td id={i}>
+
+                <td key={i}>
                   <AiOutlineEye
-                    onClick={() =>
+                    id={i}
+                    onClick={(event) => {
+                      this.getMeMyModal(event);
                       this.setState({
                         modalIsOpen: true,
-                      })
-                    }
+                      });
+                    }}
                   />
                 </td>
               </tr>
             ))}
           </tbody>
         </table>
-        {this.state.modalIsOpen
-          ? this.state.report.map((report) => (
-              <Modal
-                isOpen={this.state.modalIsOpen}
-                onRequestClose={() =>
-                  this.setState({
-                    setModalIsOpen: false,
-                  })
-                }
-                className={style.modal}
-              >
-                <InfoModal
-                  name={report.candidateName}
-                  company={report.companyName}
-                  status={report.status}
-                  date={new Date(report.interviewDate)}
-                  note={report.Name}
-                  phase={report.phase}
-                />
-                <button
-                  onClick={() =>
-                    this.setState({
-                      setModalIsOpen: false,
-                    })
-                  }
-                  className={style.modalBtn}
-                >
-                  X
-                </button>
-              </Modal>
-            ))
-          : null}
+        {this.state.modalContent && (
+          <Modal
+            isOpen={this.state.modalIsOpen}
+            onRequestClose={() => this.setState({ modalIsOpen: false })}
+            className={style.modal}
+            ariaHideApp={false}
+          >
+            <InfoModal
+              name={this.state.modalContent.candidateName}
+              company={this.state.modalContent.companyName}
+              status={this.state.modalContent.status}
+              date={new Date(this.state.modalContent.interviewDate)}
+              note={this.state.modalContent.note}
+              phase={this.state.modalContent.phase}
+            />
+            <button
+              onClick={() =>
+                this.setState({
+                  modalIsOpen: false,
+                })
+              }
+              className={style.modalBtn}
+            >
+              X
+            </button>
+          </Modal>
+        )}
       </>
     );
   }
