@@ -4,7 +4,7 @@ import Report from "./Report/Report.js";
 import { allReports } from "../../../services/reportsService.js";
 import { APHeader } from "../APHeader/APHeader";
 import { SearchBar } from "../../SearchBar/SearchBar.js";
-import { Container } from "react-bootstrap";
+import { Container, Row } from "react-bootstrap";
 import { NothingFound } from "../../NothingFound/NothingFound.js";
 import { removeReportFromServer } from "../../../services/AuthService";
 import { isLoggedIn } from "../../../services/AuthService";
@@ -55,27 +55,30 @@ class ListOfReports extends React.Component {
     }
     return (
       <div className={style.wrapper}>
+        <APHeader />
         <Container>
-          <APHeader />
-          <SearchBar getInputValue={this.inputValue} />
-         
-          {this.state.filteredReports.length ? (
-            this.state.filteredReports.map((report) => (
-              <Report
-                key={report.id}
-                name={report.candidateName}
-                company={report.companyName}
-                status={report.status}
-                interviewDate={report.interviewDate}
-                note={report.note}
-                phase={report.phase}
-                id={report.id}
-                removeReport={this.removeReport}
-              />
-            ))
-          ) : (
-            <NothingFound />
-          )}
+          <Row>
+            <SearchBar getInputValue={this.inputValue} />
+          </Row>
+          <Row>
+            {this.state.filteredReports.length ? (
+              this.state.filteredReports.map((report) => (
+                <Report
+                  key={report.id}
+                  name={report.candidateName}
+                  company={report.companyName}
+                  status={report.status}
+                  interviewDate={report.interviewDate}
+                  note={report.note}
+                  phase={report.phase}
+                  id={report.id}
+                  removeReport={this.removeReport}
+                />
+              ))
+            ) : (
+              <NothingFound />
+            )}
+          </Row>
         </Container>
       </div>
     );
