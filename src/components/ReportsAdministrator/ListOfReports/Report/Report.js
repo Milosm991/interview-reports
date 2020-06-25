@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import { Container } from "react-bootstrap";
 
 import style from "./Report.module.scss";
+import Loader from "react-loader-spinner";
 
 import InfoModal from "./InfoModal.js";
 
@@ -18,6 +19,7 @@ const Report = ({
   phase,
   id,
   removeReport,
+  isLoading,
 }) => {
   const date = new Date(interviewDate);
 
@@ -35,7 +37,7 @@ const Report = ({
           <span>Candidate</span>
         </div>
         <div className="col-2">
-          <h4>{`${date.getDay()}.${
+          <h4>{`${date.getDate()}.${
             date.getMonth() + 1
           }.${date.getFullYear()}`}</h4>
           <span>Interview Date</span>
@@ -48,7 +50,14 @@ const Report = ({
           <AiOutlineEye onClick={() => setModalIsOpen(true)} />
         </div>
         <div className="col-1">
-          <AiOutlineClose onClick={() => removeReport(id)} />
+          {!isLoading ? (
+            <AiOutlineClose
+              id={id}
+              onClick={(e) => removeReport(id, e.currentTarget)}
+            />
+          ) : (
+            <Loader type="Oval" color="#00BFFF" height={100} width={100} />
+          )}
         </div>
       </div>
 

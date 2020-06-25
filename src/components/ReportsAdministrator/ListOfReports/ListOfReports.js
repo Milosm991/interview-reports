@@ -8,7 +8,6 @@ import { Container, Row } from "react-bootstrap";
 import { NothingFound } from "../../NothingFound/NothingFound.js";
 import { removeReportFromServer } from "../../../services/AuthService";
 import { isLoggedIn } from "../../../services/AuthService";
-
 import style from "./ListOfReports.module.scss";
 
 class ListOfReports extends React.Component {
@@ -18,6 +17,7 @@ class ListOfReports extends React.Component {
     this.state = {
       reports: [],
       filteredReports: [],
+      isLoading: false,
     };
   }
   componentDidMount() {
@@ -26,13 +26,16 @@ class ListOfReports extends React.Component {
     });
   }
 
-  removeReport = (id) => {
-    const newArray = this.state.filteredReports.filter(
-      (report) => report.id !== id
+  removeReport = (id, target) => {
+    removeReportFromServer(id).then((res) =>
+      allReports().then((reports) => {
+        this.setState({
+          reports: reports.data,
+          filteredReports: reports.data,
+          isLoading: !this.state.isLoading,
+        });
+      })
     );
-
-    this.setState({ filteredReports: newArray });
-    removeReportFromServer(id);
   };
 
   inputValue = (value) => {
@@ -47,7 +50,13 @@ class ListOfReports extends React.Component {
     });
     this.setState({ filteredReports: filteredArray });
   };
-
+  componentDidUpdate(prevProps, prevState) {
+    if (prevState.isLoading !== this.state.isLoading) {
+      // console.log(prevState.isLoading);
+      // this.setState({ isLoading: false });
+      this.setState({ isLoading: false });
+    }
+  }
   render() {
     const areYouAdmin = isLoggedIn();
     if (!areYouAdmin) {
@@ -57,6 +66,7 @@ class ListOfReports extends React.Component {
       <div className={style.wrapper}>
         <APHeader />
         <Container>
+<<<<<<< HEAD
           <Row>
             <SearchBar getInputValue={this.inputValue} />
           </Row>
@@ -79,6 +89,28 @@ class ListOfReports extends React.Component {
               <NothingFound />
             )}
           </Row>
+=======
+          <APHeader />
+          <SearchBar getInputValue={this.inputValue} />
+          {this.state.filteredReports.length ? (
+            this.state.filteredReports.map((report) => (
+              <Report
+                key={report.id}
+                name={report.candidateName}
+                company={report.companyName}
+                status={report.status}
+                interviewDate={report.interviewDate}
+                note={report.note}
+                phase={report.phase}
+                id={report.id}
+                removeReport={this.removeReport}
+                isLoading={this.state.isLoading}
+              />
+            ))
+          ) : (
+            <NothingFound />
+          )}
+>>>>>>> master
         </Container>
       </div>
     );

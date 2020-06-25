@@ -4,7 +4,7 @@ import { Button } from "react-bootstrap";
 import style from "./LoginForm.module.scss";
 
 import { isAdmin } from "../../../services/AuthService";
-
+import { isLoggedIn } from "../../../services/AuthService";
 class LoginForm extends React.Component {
   constructor(props) {
     super(props);
@@ -32,6 +32,11 @@ class LoginForm extends React.Component {
   };
 
   render() {
+    let access = isLoggedIn();
+    if (access) {
+      this.props.history.push("/admin/list_of_reports");
+    }
+
     return (
       <div className={style.LoginForm__wrapper}>
         <input
