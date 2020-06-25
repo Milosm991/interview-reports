@@ -4,8 +4,8 @@ import { Container, Row, Col } from "react-bootstrap";
 import { SelectCompany } from "./SelectCompany/SelectCompany";
 import { APHeader } from "../../APHeader/APHeader";
 import { SelectCandidate } from "./SelectCandidate/SelectCandidate";
-import { CompanyService } from "../../../../services/CompanyServise";
-import { CandidatesServise } from "../../../../services/CandidatesServise";
+import { CompanyService } from "../../../../services/CompanyService";
+import { CandidatesServise } from "../../../../services/CandidatesService";
 import { FillReportDetails } from "./FillReportDetails/FillReportDetails";
 
 import { SubmitNewReport } from "../../../../services/AuthService";
@@ -36,14 +36,12 @@ class SubmitReport extends React.Component {
       .then((res) =>
         this.setState({ candidates: res.data, filteredCandidates: res.data })
       );
-    new CompanyService()
-      .fetchAll()
-      .then((result) =>
-        this.setState({
-          companies: result.data,
-          filteredCompanies: result.data,
-        })
-      );
+    new CompanyService().fetchAll().then((result) =>
+      this.setState({
+        companies: result.data,
+        filteredCompanies: result.data,
+      })
+    );
   }
   getCandidate = (item, currentTarget) => {
     let a = this.state.candidates.filter((character) => item === character);
@@ -75,12 +73,8 @@ class SubmitReport extends React.Component {
     currentTarget.classList.add("bg-secondary");
   };
   getReportDetails = (event, currentTarget) => {
-    if (
-      currentTarget.value === "cv" ||
-      currentTarget.value === "hr" ||
-      currentTarget.value === "tech" ||
-      currentTarget.value === "final"
-    ) {
+    let phases = ["cv", "hr", "tech", "final"];
+    if (phases.some((itm) => itm === currentTarget.value)) {
       this.setState({ phase: currentTarget.value });
     } else if (
       currentTarget.value === "Passed" ||
@@ -88,7 +82,7 @@ class SubmitReport extends React.Component {
     ) {
       this.setState({ status: currentTarget.value });
     } else if (currentTarget.type === "date") {
-      this.setState({ interviewDate: currentTarget.value });
+      this.setState({ interviewDate: new Date(currentTarget.value) });
     } else {
       this.setState({ note: currentTarget.value });
     }
@@ -115,7 +109,6 @@ class SubmitReport extends React.Component {
   searchedCompanies = (filteredCompanies) => {
     this.setState({ filteredCompanies });
   };
-
   render() {
     return (
       <Container>

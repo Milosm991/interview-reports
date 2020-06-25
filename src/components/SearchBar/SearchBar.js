@@ -11,11 +11,7 @@ class SearchBar extends React.Component {
     return (
       <div className={style.search}>
         <AiOutlineSearch />
-        <input
-          type="search"
-          placeholder="Search"
-          onChange={this.getValue}
-        ></input>
+        <input type="search" placeholder="Search" onChange={this.getValue} />
       </div>
     );
   }
