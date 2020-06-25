@@ -7,6 +7,7 @@ import { SelectCandidate } from "./SelectCandidate/SelectCandidate";
 import { CompanyService } from "../../../../services/CompanyServise";
 import { CandidatesServise } from "../../../../services/CandidatesServise";
 import { FillReportDetails } from "./FillReportDetails/FillReportDetails";
+import { isLoggedIn } from "../../../../services/AuthService";
 
 import { SubmitNewReport } from "../../../../services/AuthService";
 
@@ -36,14 +37,12 @@ class SubmitReport extends React.Component {
       .then((res) =>
         this.setState({ candidates: res.data, filteredCandidates: res.data })
       );
-    new CompanyService()
-      .fetchAll()
-      .then((result) =>
-        this.setState({
-          companies: result.data,
-          filteredCompanies: result.data,
-        })
-      );
+    new CompanyService().fetchAll().then((result) =>
+      this.setState({
+        companies: result.data,
+        filteredCompanies: result.data,
+      })
+    );
   }
   getCandidate = (item, currentTarget) => {
     let a = this.state.candidates.filter((character) => item === character);
@@ -117,6 +116,10 @@ class SubmitReport extends React.Component {
   };
 
   render() {
+    const areYouAdmin = isLoggedIn();
+    if (!areYouAdmin) {
+      this.props.history.push("/admin");
+    }
     return (
       <Container>
         <APHeader />
