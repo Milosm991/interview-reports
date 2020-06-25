@@ -28,7 +28,6 @@ class ListOfCandidates extends React.Component {
 
   getInputValue = (value) => {
     let filteredArray = search(this.state.candidates, value);
-
     this.setState({ filteredCandidates: filteredArray });
   };
 

@@ -14,8 +14,12 @@ class FillReportDetails extends React.Component {
         <div
           className={`${style.typeOfAction} col-lg-2 border-right border-dark`}
         >
-          <p className={`${style.paragraph} `}>1.Select Candidate</p>
-          <p className={`${style.paragraph}`}>2. Select Company </p>
+          <p className={`${style.paragraph} `} id="1">
+            1.Select Candidate
+          </p>
+          <p className={`${style.paragraph}`} id="2">
+            2. Select Company{" "}
+          </p>
           <p className={`${style.paragraph} font-weight-bold`}>
             <span className={style.span}>3.</span> Fill Report Details
           </p>

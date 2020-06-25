@@ -25,11 +25,18 @@ const SelectCompany = ({
   return (
     <Row>
       <div className={`${style.typeOfAction} col-2 border-right border-dark`}>
-        <p className={`${style.paragraph}`}>1. Select Candidate</p>
-        <p className={`${style.paragraph} font-weight-bold`}>
-          <span className={style.span}>2.</span> Select Company{" "}
+        <p className={`${style.paragraph}`} id="1">
+          1. Select Candidate
         </p>
-        <p className={`${style.paragraph} `}>3. Fill Report Details</p>
+        <p className={`${style.paragraph} font-weight-bold`}>
+          <span className={style.span} id="2">
+            2.
+          </span>{" "}
+          Select Company{" "}
+        </p>
+        <p className={`${style.paragraph} `} id="3">
+          3. Fill Report Details
+        </p>
         <div>
           <div className="mt-4">
             <p className={style.candidate}>Candidate:</p>

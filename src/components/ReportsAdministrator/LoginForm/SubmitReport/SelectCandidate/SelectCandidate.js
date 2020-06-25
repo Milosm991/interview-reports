@@ -14,6 +14,7 @@ const SelectCandidate = ({
   getCandidate,
   next,
   searchCandidates,
+  choseSubmitPart,
 }) => {
   const getValue = (value) => {
     let filteredCandidates = search(candidates, value);
@@ -28,8 +29,12 @@ const SelectCandidate = ({
         <p className={`${style.paragraph} font-weight-bolder `}>
           <span className={style.span}>1.</span> Select Candidate
         </p>
-        <p className={`${style.paragraph}`}>2. Select Company </p>
-        <p className={`${style.paragraph} `}>3. Fill Report Details</p>
+        <p className={`${style.paragraph}`} id="2">
+          2. Select Company{" "}
+        </p>
+        <p className={`${style.paragraph}`} id="3">
+          3. Fill Report Details
+        </p>
       </div>
       <div className={`${style.candidates} col-10`}>
         <Row>
