@@ -35,7 +35,7 @@ const Report = ({
           <span>Candidate</span>
         </div>
         <div className="col-2">
-          <h4>{`${date.getDay()}.${
+          <h4>{`${date.getDate()}.${
             date.getMonth() + 1
           }.${date.getFullYear()}`}</h4>
           <span>Interview Date</span>
