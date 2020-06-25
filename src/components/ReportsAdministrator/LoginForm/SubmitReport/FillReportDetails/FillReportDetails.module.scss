@@ -14,11 +14,17 @@
   height: 7em;
 }
 .butons {
+  max-width: 80% !important;
   display: flex;
-  justify-content: space-evenly;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px auto;
 }
 .span {
   padding: 2px;
   border: 1px solid black;
   border-radius: 50%;
+}
+.company {
+  margin-top: 1.4rem;
 }

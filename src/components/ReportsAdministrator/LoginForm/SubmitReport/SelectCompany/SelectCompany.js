@@ -52,18 +52,18 @@ const SelectCompany = ({
 
           {filteredCompanies.length ? (
             filteredCompanies.map((company) => (
-              <Col xs={10} key={company.id}>
+              <Col xs={12} key={company.id}>
                 <Company company={company} getInfoForCompany={getCompany} />
               </Col>
             ))
           ) : (
             <NothingFound />
           )}
+          <Col xd={7} className={style.buttons}>
+            <Button onClick={prev}>Prev</Button>
+            <Button onClick={next}>Next</Button>
+          </Col>
         </Row>
-      </Col>
-      <Col xd={8} className="d-flex justify-content-around mt-5">
-        <Button onClick={prev}>Prev</Button>
-        <Button onClick={next}>Next</Button>
       </Col>
     </Row>
   );

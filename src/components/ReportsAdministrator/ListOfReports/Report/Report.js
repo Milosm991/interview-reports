@@ -24,7 +24,7 @@ const Report = ({
   const [modalIsOpen, setModalIsOpen] = useState(false);
 
   return (
-    <Container>
+    <Container className={style.container}>
       <div className={`row ${style.aboutReport}`}>
         <div className="col-3">
           <h4>{company}</h4>

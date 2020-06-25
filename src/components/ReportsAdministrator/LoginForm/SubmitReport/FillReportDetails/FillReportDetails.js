@@ -30,7 +30,7 @@ class FillReportDetails extends React.Component {
             <span className={style.candidate_name}>
               {this.props.candidateName}
             </span>
-            <p className={style.candidate}>Company:</p>
+            <p className={style.company}>Company:</p>
             <span className={style.company_name}>{this.props.companyName}</span>
           </div>
         </div>

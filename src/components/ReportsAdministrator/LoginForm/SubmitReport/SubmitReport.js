@@ -9,6 +9,8 @@ import { CandidatesServise } from "../../../../services/CandidatesService";
 import { FillReportDetails } from "./FillReportDetails/FillReportDetails";
 import { isLoggedIn } from "../../../../services/AuthService";
 
+import "./SubmitReport.css";
+
 import { SubmitNewReport } from "../../../../services/AuthService";
 
 class SubmitReport extends React.Component {
@@ -55,11 +57,11 @@ class SubmitReport extends React.Component {
   };
 
   selectedCandidate(Candidate) {
-    if (document.querySelector(".bg-secondary") !== null) {
-      let $selectedCandidated = document.querySelector(".bg-secondary");
-      $selectedCandidated.classList.remove("bg-secondary");
+    if (document.querySelector(".selected") !== null) {
+      let $selectedCandidated = document.querySelector(".selected");
+      $selectedCandidated.classList.remove("selected");
     }
-    Candidate.classList.add("bg-secondary");
+    Candidate.classList.add("selected");
   }
   getCompany = (item, currentTarget) => {
     let a = this.state.companies.filter((company) => item === company);
@@ -67,11 +69,11 @@ class SubmitReport extends React.Component {
       companyName: a[0].name,
       companyId: a[0].id,
     });
-    if (document.querySelector(".bg-secondary") !== null) {
-      let $selectedCandidated = document.querySelector(".bg-secondary");
-      $selectedCandidated.classList.remove("bg-secondary");
+    if (document.querySelector(".selected") !== null) {
+      let $selectedCandidated = document.querySelector(".selected");
+      $selectedCandidated.classList.remove("selected");
     }
-    currentTarget.classList.add("bg-secondary");
+    currentTarget.classList.add("selected");
   };
   getReportDetails = (event, currentTarget) => {
     let phases = ["cv", "hr", "tech", "final"];

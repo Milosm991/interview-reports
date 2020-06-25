@@ -12,3 +12,12 @@
     margin: 0px;
   }
 }
+.container:hover {
+  background-color: rgba(132, 162, 192, 0.2);
+}
+.Candidate__image {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  margin-right: 5px;
+}

@@ -37,8 +37,8 @@ const SelectCandidate = ({
         </p>
       </div>
       <div className={`${style.candidates} col-10`}>
-        <Row>
-          <Col xs={10} className="d-flex flex-row-reverse ">
+        <Row className={style.candidateWrapper}>
+          <Col xs={10} className="d-flex flex-row-reverse">
             <SearchBar getInputValue={getValue} />
           </Col>
           {filteredCandidates.length ? (

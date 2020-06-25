@@ -1,19 +1,20 @@
 .nav {
-  background-color: rgb(178, 187, 195);
+  background-color: #5b84b1ff;
   border-bottom: rgb(168, 177, 185) solid 1px;
   box-shadow: 0px 2.5px 1px 0px rgba(163, 172, 180, 0.5);
   max-width: 1140px;
   margin: auto;
+  color: whitesmoke;
 
   .spn {
     border: 1px solid #000000;
     border-radius: 3px;
     padding: 3px;
     margin-left: 3px;
-    background-color: white;
+    background-color: #5f4b8bff;
   }
   .link {
-    color: black;
+    color: whitesmoke;
     text-decoration: none;
   }
   .active {

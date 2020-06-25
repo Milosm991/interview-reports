@@ -9,10 +9,17 @@
   flex-wrap: wrap;
 }
 .selecting {
-  background-color: grey;
+  background-color: rgba(132, 162, 192, 0.7);
 }
 .span {
   padding: 2px;
   border: 1px solid black;
   border-radius: 50%;
+}
+.buttons {
+  max-width: 80% !important;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  margin: 10px auto;
 }

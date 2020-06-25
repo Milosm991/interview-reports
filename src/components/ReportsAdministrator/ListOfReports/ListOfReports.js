@@ -58,6 +58,7 @@ class ListOfReports extends React.Component {
         <Container>
           <APHeader />
           <SearchBar getInputValue={this.inputValue} />
+         
           {this.state.filteredReports.length ? (
             this.state.filteredReports.map((report) => (
               <Report
