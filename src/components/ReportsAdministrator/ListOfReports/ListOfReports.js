@@ -6,7 +6,8 @@ import { APHeader } from "../APHeader/APHeader";
 import { SearchBar } from "../../SearchBar/SearchBar.js";
 import { Container } from "react-bootstrap";
 import { NothingFound } from "../../NothingFound/NothingFound.js";
-import { removeReportFromServer } from '../../../services/AuthService'
+import { removeReportFromServer } from "../../../services/AuthService";
+import { isLoggedIn } from "../../../services/AuthService";
 
 import style from "./ListOfReports.module.scss";
 
@@ -31,7 +32,7 @@ class ListOfReports extends React.Component {
     );
 
     this.setState({ filteredReports: newArray });
-    removeReportFromServer(id)
+    removeReportFromServer(id);
   };
 
   inputValue = (value) => {
@@ -48,6 +49,10 @@ class ListOfReports extends React.Component {
   };
 
   render() {
+    const areYouAdmin = isLoggedIn();
+    if (!areYouAdmin) {
+      this.props.history.push("/admin");
+    }
     return (
       <div className={style.wrapper}>
         <Container>

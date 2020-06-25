@@ -7,6 +7,7 @@ import { SelectCandidate } from "./SelectCandidate/SelectCandidate";
 import { CompanyService } from "../../../../services/CompanyService";
 import { CandidatesServise } from "../../../../services/CandidatesService";
 import { FillReportDetails } from "./FillReportDetails/FillReportDetails";
+import { isLoggedIn } from "../../../../services/AuthService";
 
 import { SubmitNewReport } from "../../../../services/AuthService";
 
@@ -110,6 +111,10 @@ class SubmitReport extends React.Component {
     this.setState({ filteredCompanies });
   };
   render() {
+    const areYouAdmin = isLoggedIn();
+    if (!areYouAdmin) {
+      this.props.history.push("/admin");
+    }
     return (
       <Container>
         <APHeader />
