@@ -66,7 +66,6 @@ class ListOfReports extends React.Component {
       <div className={style.wrapper}>
         <APHeader />
         <Container>
-<<<<<<< HEAD
           <Row>
             <SearchBar getInputValue={this.inputValue} />
           </Row>
@@ -89,28 +88,6 @@ class ListOfReports extends React.Component {
               <NothingFound />
             )}
           </Row>
-=======
-          <APHeader />
-          <SearchBar getInputValue={this.inputValue} />
-          {this.state.filteredReports.length ? (
-            this.state.filteredReports.map((report) => (
-              <Report
-                key={report.id}
-                name={report.candidateName}
-                company={report.companyName}
-                status={report.status}
-                interviewDate={report.interviewDate}
-                note={report.note}
-                phase={report.phase}
-                id={report.id}
-                removeReport={this.removeReport}
-                isLoading={this.state.isLoading}
-              />
-            ))
-          ) : (
-            <NothingFound />
-          )}
->>>>>>> master
         </Container>
       </div>
     );
