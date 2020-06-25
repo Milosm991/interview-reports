@@ -92,14 +92,23 @@ class SubmitReport extends React.Component {
     SubmitNewReport(this.state);
   };
   nextStep = (event) => {
-    if (this.state.candidateName !== "") {
+    if (this.state.candidateName !== "" && this.state.steps === 1) {
       let counter = this.state.steps + 1;
       if (counter === 4) {
         counter = 1;
       }
       this.setState({ steps: counter });
-    } else {
+    } else if (this.state.steps === 1) {
       alert("U have to Select Candidate");
+    }
+    if (this.state.steps === 2 && this.state.companyName !== "") {
+      let counter = this.state.steps + 1;
+      if (counter === 4) {
+        counter = 1;
+      }
+      this.setState({ steps: counter });
+    } else if (this.state.steps === 2) {
+      alert("U have to Select Company");
     }
   };
   previousStep = () => {
