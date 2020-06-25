@@ -74,7 +74,9 @@ class SubmitReport extends React.Component {
     currentTarget.classList.add("bg-secondary");
   };
   getReportDetails = (event, currentTarget) => {
+
     let phases = ["cv", "hr", "tech", "final"];
+
     if (phases.some((itm) => itm === currentTarget.value)) {
       this.setState({ phase: currentTarget.value });
     } else if (
