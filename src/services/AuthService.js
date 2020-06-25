@@ -56,13 +56,13 @@ const removeReportFromServer = (id) => {
 };
 
 const isLoggedIn = () => {
-  let key = JSON.parse(sessionStorage.getItem("accsesKey"));
-
-  if(key){
-    return true
-  }else{
-    return false
+  if (sessionStorage.getItem("accsesKey") !== "") {
+    let key = JSON.parse(sessionStorage.getItem("accsesKey"));
+    if (key) {
+      return true;
+    } else {
+      return false;
+    }
   }
-
-}
+};
 export { isAdmin, SubmitNewReport, removeReportFromServer, isLoggedIn };
