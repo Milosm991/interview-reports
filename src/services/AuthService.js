@@ -56,8 +56,9 @@ const removeReportFromServer = (id) => {
 };
 
 const isLoggedIn = () => {
+  let key = sessionStorage.getItem("accsesKey");
+
   if (sessionStorage.getItem("accsesKey") !== "") {
-    let key = JSON.parse(sessionStorage.getItem("accsesKey"));
     if (key) {
       return true;
     } else {

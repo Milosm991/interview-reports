@@ -24,7 +24,7 @@ function App() {
           <Route exact path="/admin/create_report" component={SubmitReport} />
           <Route
             exact
-            path="/admin/list_of_reports"
+          path="/admin/list_of_reports"
             component={ListOfReports}
           />
         </Switch>
