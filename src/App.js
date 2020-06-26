@@ -1,7 +1,6 @@
 import React from "react";
 import "./App.css";
 
-import { Container } from "react-bootstrap";
 import { Switch, Route } from "react-router-dom";
 import { LoginForm } from "./components/ReportsAdministrator/LoginForm/LoginForm";
 import { ListOfReports } from "./components/ReportsAdministrator/ListOfReports/ListOfReports";

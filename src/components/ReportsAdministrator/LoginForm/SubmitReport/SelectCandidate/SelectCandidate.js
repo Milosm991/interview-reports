@@ -1,6 +1,6 @@
 import React from "react";
 
-import { Row, Col, Button, Container } from "react-bootstrap";
+import { Row, Col, Button } from "react-bootstrap";
 import { Candidate } from "../Candidate/Candidate";
 import { SearchBar } from "../../../../SearchBar/SearchBar";
 import { search } from "../../../../../entities/search";

@@ -18,6 +18,7 @@ class ListOfReports extends React.Component {
     this.state = {
       reports: [],
       filteredReports: [],
+      isLoading: null,
     };
   }
   componentDidMount() {
@@ -32,11 +33,9 @@ class ListOfReports extends React.Component {
         this.setState({ isLoading: false })
       )
     );
-
     const newArray = this.state.filteredReports.filter(
       (report) => report.id !== id
     );
-
     this.setState({ filteredReports: newArray });
   };
 
@@ -52,11 +51,7 @@ class ListOfReports extends React.Component {
     });
     this.setState({ filteredReports: filteredArray });
   };
-  // componentDidUpdate(prevProps, prevState) {
-  //   if (prevState.isLoading !== this.state.isLoading) {
-  //     this.setState({ isLoading: false });
-  //   }
-  // }
+
   render() {
     const areYouAdmin = isLoggedIn();
     if (!areYouAdmin) {

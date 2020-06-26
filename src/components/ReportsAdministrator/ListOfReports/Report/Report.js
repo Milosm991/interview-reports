@@ -1,5 +1,4 @@
 import React from "react";
-import { useState } from "react";
 import Modal from "react-modal";
 import { Container } from "react-bootstrap";
 
@@ -12,8 +11,7 @@ import { AiOutlineClose, AiOutlineEye } from "react-icons/ai";
 class Report extends React.Component {
   constructor(props) {
     super(props);
-    this.setState = {
-      isLoading: null,
+    this.state = {
       modalIsOpen: false,
     };
   }
@@ -52,7 +50,7 @@ class Report extends React.Component {
             />
           </div>
           <div className="col-1">
-            {this.state.isLoading ? (
+            {this.props.isLoading ? (
               <Loader
                 type="Circles"
                 color="#000000"
