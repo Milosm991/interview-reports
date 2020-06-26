@@ -58,7 +58,11 @@ const Report = ({
               timeout={3000}
             />
           ) : (
-            <AiOutlineClose onClick={() => removeReport(id)} />
+            <AiOutlineClose
+              onClick={() => {
+                removeReport(id);
+              }}
+            />
           )}
         </div>
       </div>
