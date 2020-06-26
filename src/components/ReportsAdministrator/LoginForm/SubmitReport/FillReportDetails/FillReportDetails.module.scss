@@ -20,8 +20,13 @@
   justify-content: space-between;
   margin: 10px auto;
 }
+
+.btnColor {
+  background-color: #5b84b1ff !important;
+  border-color: #5b84b1ff !important;
+}
 .span {
-  padding: 2px;
+  padding: 2px 5px;
   border: 1px solid black;
   border-radius: 50%;
 }

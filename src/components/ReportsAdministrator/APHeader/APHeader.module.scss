@@ -11,7 +11,8 @@
     border-radius: 3px;
     padding: 3px;
     margin-left: 3px;
-    background-color: #5f4b8bff;
+    background-color: #5b84b1ff;
+    padding: 0.4em;
   }
   .link {
     color: whitesmoke;
@@ -24,4 +25,8 @@
     margin-left: 3px;
     background-color: rgb(178, 187, 195);
   }
+}
+.container {
+  width: 100%;
+  background-color: #5b84b1ff;
 }

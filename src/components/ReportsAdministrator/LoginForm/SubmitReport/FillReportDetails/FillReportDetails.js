@@ -92,8 +92,8 @@ class FillReportDetails extends React.Component {
             </Col>
           </Row>
           <div className={style.butons}>
-            <Button onClick={this.props.prev}>Back</Button>
-            <Button onClick={this.props.submit}>Submit</Button>
+            <Button onClick={this.props.prev} className={style.btnColor}>Back</Button>
+            <Button onClick={this.props.submit} className={style.btnColor}>Submit</Button>
           </div>
         </Col>
       </Row>

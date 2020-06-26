@@ -52,8 +52,6 @@ class ListOfReports extends React.Component {
   };
   componentDidUpdate(prevProps, prevState) {
     if (prevState.isLoading !== this.state.isLoading) {
-      // console.log(prevState.isLoading);
-      // this.setState({ isLoading: false });
       this.setState({ isLoading: false });
     }
   }

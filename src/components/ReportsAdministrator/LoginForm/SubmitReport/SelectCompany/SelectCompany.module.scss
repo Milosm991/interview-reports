@@ -12,7 +12,7 @@
   background-color: rgba(132, 162, 192, 0.7);
 }
 .span {
-  padding: 2px;
+  padding: 2px 5px;
   border: 1px solid black;
   border-radius: 50%;
 }
@@ -22,4 +22,18 @@
   flex-wrap: wrap;
   justify-content: space-between;
   margin: 10px auto;
+}
+
+.typeOfAction {
+  border-right: solid 1px black;
+}
+
+.btnColor {
+  background-color: #5b84b1ff !important;
+  border-color: #5b84b1ff !important;
+}
+@media only screen and (max-width: 768px) {
+  .typeOfAction {
+    border: none;
+  }
 }

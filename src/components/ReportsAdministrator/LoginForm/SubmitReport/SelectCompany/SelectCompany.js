@@ -24,7 +24,9 @@ const SelectCompany = ({
   };
   return (
     <Row>
-      <div className={`${style.typeOfAction} col-2 border-right border-dark`}>
+      <div
+        className={`${style.typeOfAction} col-xl-2 col-lg-2 col-md-2 col-12`}
+      >
         <p className={`${style.paragraph}`} id="1">
           1. Select Candidate
         </p>
@@ -60,8 +62,12 @@ const SelectCompany = ({
             <NothingFound />
           )}
           <Col xd={7} className={style.buttons}>
-            <Button onClick={prev}>Prev</Button>
-            <Button onClick={next}>Next</Button>
+            <Button onClick={prev} className={style.btnColor}>
+              Prev
+            </Button>
+            <Button onClick={next} className={style.btnColor}>
+              Next
+            </Button>
           </Col>
         </Row>
       </Col>
