@@ -9,85 +9,97 @@ import Loader from "react-loader-spinner";
 import InfoModal from "./InfoModal.js";
 import { AiOutlineClose, AiOutlineEye } from "react-icons/ai";
 
-const Report = ({
-  name,
-  company,
-  status,
-  interviewDate,
-  note,
-  phase,
-  id,
-  removeReport,
-  isLoading,
-}) => {
-  const date = new Date(interviewDate);
+class Report extends React.Component {
+  constructor(props) {
+    super(props);
+    this.setState = {
+      isLoading: null,
+      modalIsOpen: false,
+    };
+  }
 
-  const [modalIsOpen, setModalIsOpen] = useState(false);
+  date = new Date(this.props.interviewDate);
 
-  return (
-    <Container className={style.container}>
-      <div className={`row ${style.aboutReport}`}>
-        <div className="col-xl-3 col-lg-3 col-md-3 col-xs-6">
-          <h4>{company}</h4>
-          <span>Company</span>
-        </div>
-        <div className="col-xl-3 col-lg-3 col-md-3 col-xs-6">
-          <h4>{name}</h4>
-          <span>Candidate</span>
-        </div>
-        <div className="col-xl-2 col-lg-2 col-md-4 col-xs-6">
-          <h4>{`${date.getDate()}.${
-            date.getMonth() + 1
-          }.${date.getFullYear()}`}</h4>
-          <span>Interview Date</span>
-        </div>
-        <div className="col-xl-2 col-lg-2 col-md-4 col-xs-6">
-          <h4>{status}</h4>
-          <span>Status</span>
-        </div>
-        <div className="col-xl-1 col-lg-3 col-md-4 col-xs-6">
-          <AiOutlineEye onClick={() => setModalIsOpen(true)} />
-        </div>
-        <div className="col-1">
-          {isLoading ? (
-            <Loader
-              type="Circles"
-              color="#000000"
-              height={100}
-              width={100}
-              timeout={3000}
+  render() {
+    return (
+      <Container className={style.container}>
+        <div className={`row ${style.aboutReport}`}>
+          <div className="col-xl-3 col-lg-3 col-md-3 col-xs-6">
+            <h4>{this.props.company}</h4>
+            <span>Company</span>
+          </div>
+          <div className="col-xl-3 col-lg-3 col-md-3 col-xs-6">
+            <h4>{this.props.name}</h4>
+            <span>Candidate</span>
+          </div>
+          <div className="col-xl-2 col-lg-2 col-md-4 col-xs-6">
+            <h4>{`${this.date.getDate()}.${
+              this.date.getMonth() + 1
+            }.${this.date.getFullYear()}`}</h4>
+            <span>Interview Date</span>
+          </div>
+          <div className="col-xl-2 col-lg-2 col-md-4 col-xs-6">
+            <h4>{this.props.status}</h4>
+            <span>Status</span>
+          </div>
+          <div className="col-xl-1 col-lg-3 col-md-4 col-xs-6">
+            <AiOutlineEye
+              onClick={() =>
+                this.setState({
+                  modalIsOpen: true,
+                })
+              }
             />
-          ) : (
-            <AiOutlineClose
-              onClick={() => {
-                removeReport(id);
-              }}
-            />
-          )}
+          </div>
+          <div className="col-1">
+            {this.state.isLoading ? (
+              <Loader
+                type="Circles"
+                color="#000000"
+                height={100}
+                width={100}
+                timeout={3000}
+              />
+            ) : (
+              <AiOutlineClose
+                onClick={() => {
+                  this.props.removeReport(this.props.id);
+                }}
+              />
+            )}
+          </div>
         </div>
-      </div>
 
-      <Modal
-        isOpen={modalIsOpen}
-        onRequestClose={() => setModalIsOpen(false)}
-        className={style.modal}
-      >
-        <InfoModal
-          name={name}
-          company={company}
-          status={status}
-          date={date}
-          note={note}
-          phase={phase}
-        />
-        <button
-          onClick={() => setModalIsOpen(false)}
-          className={style.modalBtn}
+        <Modal
+          isOpen={this.state.modalIsOpen}
+          onRequestClose={() =>
+            this.setState({
+              modalIsOpen: false,
+            })
+          }
+          className={style.modal}
         >
-          X
-        </button>
-      </Modal>
-    </Container>
-  );
-};
+          <InfoModal
+            name={this.props.name}
+            company={this.props.company}
+            status={this.props.status}
+            date={this.props.date}
+            note={this.props.note}
+            phase={this.props.phase}
+          />
+          <button
+            onClick={() =>
+              this.setState({
+                modalIsOpen: false,
+              })
+            }
+            className={style.modalBtn}
+          >
+            X
+          </button>
+        </Modal>
+      </Container>
+    );
+  }
+}
 export default Report;

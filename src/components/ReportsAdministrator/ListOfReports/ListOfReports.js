@@ -18,7 +18,6 @@ class ListOfReports extends React.Component {
     this.state = {
       reports: [],
       filteredReports: [],
-      isLoading: null,
     };
   }
   componentDidMount() {
