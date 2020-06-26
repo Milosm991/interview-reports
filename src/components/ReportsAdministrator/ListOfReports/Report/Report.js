@@ -7,7 +7,6 @@ import style from "./Report.module.scss";
 import Loader from "react-loader-spinner";
 
 import InfoModal from "./InfoModal.js";
-
 import { AiOutlineClose, AiOutlineEye } from "react-icons/ai";
 
 const Report = ({
@@ -50,13 +49,16 @@ const Report = ({
           <AiOutlineEye onClick={() => setModalIsOpen(true)} />
         </div>
         <div className="col-1">
-          {!isLoading ? (
-            <AiOutlineClose
-              id={id}
-              onClick={(e) => removeReport(id, e.currentTarget)}
+          {isLoading ? (
+            <Loader
+              type="Circles"
+              color="#000000"
+              height={100}
+              width={100}
+              timeout={3000}
             />
           ) : (
-            <Loader type="Oval" color="#00BFFF" height={100} width={100} />
+            <AiOutlineClose onClick={() => removeReport(id)} />
           )}
         </div>
       </div>

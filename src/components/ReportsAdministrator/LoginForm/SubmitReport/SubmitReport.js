@@ -74,7 +74,9 @@ class SubmitReport extends React.Component {
     currentTarget.classList.add("bg-secondary");
   };
   getReportDetails = (event, currentTarget) => {
+
     let phases = ["cv", "hr", "tech", "final"];
+
     if (phases.some((itm) => itm === currentTarget.value)) {
       this.setState({ phase: currentTarget.value });
     } else if (
@@ -92,11 +94,24 @@ class SubmitReport extends React.Component {
     SubmitNewReport(this.state);
   };
   nextStep = (event) => {
-    let counter = this.state.steps + 1;
-    if (counter === 4) {
-      counter = 1;
+    if (this.state.candidateName !== "" && this.state.steps === 1) {
+      let counter = this.state.steps + 1;
+      if (counter === 4) {
+        counter = 1;
+      }
+      this.setState({ steps: counter });
+    } else if (this.state.steps === 1) {
+      alert("U have to Select Candidate");
     }
-    this.setState({ steps: counter });
+    if (this.state.steps === 2 && this.state.companyName !== "") {
+      let counter = this.state.steps + 1;
+      if (counter === 4) {
+        counter = 1;
+      }
+      this.setState({ steps: counter });
+    } else if (this.state.steps === 2) {
+      alert("U have to Select Company");
+    }
   };
   previousStep = () => {
     let counter = this.state.steps - 1;

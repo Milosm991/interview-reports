@@ -8,6 +8,8 @@ import { Container } from "react-bootstrap";
 import { NothingFound } from "../../NothingFound/NothingFound.js";
 import { removeReportFromServer } from "../../../services/AuthService";
 import { isLoggedIn } from "../../../services/AuthService";
+
+
 import style from "./ListOfReports.module.scss";
 
 class ListOfReports extends React.Component {
@@ -17,7 +19,7 @@ class ListOfReports extends React.Component {
     this.state = {
       reports: [],
       filteredReports: [],
-      isLoading: false,
+      isLoading: null
     };
   }
   componentDidMount() {
@@ -26,16 +28,15 @@ class ListOfReports extends React.Component {
     });
   }
 
-  removeReport = (id, target) => {
-    removeReportFromServer(id).then((res) =>
-      allReports().then((reports) => {
-        this.setState({
-          reports: reports.data,
-          filteredReports: reports.data,
-          isLoading: !this.state.isLoading,
-        });
-      })
+  removeReport = (id) => {
+    this.setState({ isLoading: true}, 
+      () => removeReportFromServer(id).then(res => this.setState({ isLoading: false})))
+    
+    const newArray = this.state.filteredReports.filter(
+      (report) => report.id !== id
     );
+    
+    this.setState({ filteredReports: newArray });
   };
 
   inputValue = (value) => {
@@ -91,3 +92,7 @@ class ListOfReports extends React.Component {
   }
 }
 export { ListOfReports };
+
+
+
+
