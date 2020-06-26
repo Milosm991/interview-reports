@@ -9,6 +9,8 @@ import { CandidatesServise } from "../../../../services/CandidatesService";
 import { FillReportDetails } from "./FillReportDetails/FillReportDetails";
 import { isLoggedIn } from "../../../../services/AuthService";
 
+import "./SubmitReport.css";
+
 import { SubmitNewReport } from "../../../../services/AuthService";
 
 class SubmitReport extends React.Component {
@@ -55,11 +57,11 @@ class SubmitReport extends React.Component {
   };
 
   selectedCandidate(Candidate) {
-    if (document.querySelector(".bg-secondary") !== null) {
-      let $selectedCandidated = document.querySelector(".bg-secondary");
-      $selectedCandidated.classList.remove("bg-secondary");
+    if (document.querySelector(".selected") !== null) {
+      let $selectedCandidated = document.querySelector(".selected");
+      $selectedCandidated.classList.remove("selected");
     }
-    Candidate.classList.add("bg-secondary");
+    Candidate.classList.add("selected");
   }
   getCompany = (item, currentTarget) => {
     let a = this.state.companies.filter((company) => item === company);
@@ -67,11 +69,11 @@ class SubmitReport extends React.Component {
       companyName: a[0].name,
       companyId: a[0].id,
     });
-    if (document.querySelector(".bg-secondary") !== null) {
-      let $selectedCandidated = document.querySelector(".bg-secondary");
-      $selectedCandidated.classList.remove("bg-secondary");
+    if (document.querySelector(".selected") !== null) {
+      let $selectedCandidated = document.querySelector(".selected");
+      $selectedCandidated.classList.remove("selected");
     }
-    currentTarget.classList.add("bg-secondary");
+    currentTarget.classList.add("selected");
   };
   getReportDetails = (event, currentTarget) => {
 
@@ -131,51 +133,52 @@ class SubmitReport extends React.Component {
       this.props.history.push("/admin");
     }
     return (
-      <Container>
+      <div>
         <APHeader />
-
-        <div className="mt-5">
-          {this.state.steps === 1 ? (
-            <Row>
-              <Col xs={12}>
-                {this.state.candidates !== null ? (
-                  <SelectCandidate
-                    filteredCandidates={this.state.filteredCandidates}
-                    candidates={this.state.candidates}
-                    getCandidate={this.getCandidate}
-                    next={this.nextStep}
-                    searchCandidates={this.searchedCandidates}
-                  />
-                ) : null}
-              </Col>
-            </Row>
-          ) : this.state.steps === 2 ? (
-            <Row>
-              <Col xs={12}>
-                {this.state.companies !== null ? (
-                  <SelectCompany
-                    filteredCompanies={this.state.filteredCompanies}
-                    companies={this.state.companies}
-                    candidateName={this.state.candidateName}
-                    getCompany={this.getCompany}
-                    next={this.nextStep}
-                    prev={this.previousStep}
-                    searchedCompanies={this.searchedCompanies}
-                  />
-                ) : null}
-              </Col>
-            </Row>
-          ) : (
-            <FillReportDetails
-              candidateName={this.state.candidateName}
-              companyName={this.state.companyName}
-              prev={this.previousStep}
-              getDetailsInfo={this.getReportDetails}
-              submit={this.submitReport}
-            />
-          )}
-        </div>
-      </Container>
+        <Container>
+          <div className="mt-5">
+            {this.state.steps === 1 ? (
+              <Row>
+                <Col xl={12} lg={12} md={12} xs={12}>
+                  {this.state.candidates !== null ? (
+                    <SelectCandidate
+                      filteredCandidates={this.state.filteredCandidates}
+                      candidates={this.state.candidates}
+                      getCandidate={this.getCandidate}
+                      next={this.nextStep}
+                      searchCandidates={this.searchedCandidates}
+                    />
+                  ) : null}
+                </Col>
+              </Row>
+            ) : this.state.steps === 2 ? (
+              <Row>
+                <Col xs={12}>
+                  {this.state.companies !== null ? (
+                    <SelectCompany
+                      filteredCompanies={this.state.filteredCompanies}
+                      companies={this.state.companies}
+                      candidateName={this.state.candidateName}
+                      getCompany={this.getCompany}
+                      next={this.nextStep}
+                      prev={this.previousStep}
+                      searchedCompanies={this.searchedCompanies}
+                    />
+                  ) : null}
+                </Col>
+              </Row>
+            ) : (
+              <FillReportDetails
+                candidateName={this.state.candidateName}
+                companyName={this.state.companyName}
+                prev={this.previousStep}
+                getDetailsInfo={this.getReportDetails}
+                submit={this.submitReport}
+              />
+            )}
+          </div>
+        </Container>
+      </div>
     );
   }
 }

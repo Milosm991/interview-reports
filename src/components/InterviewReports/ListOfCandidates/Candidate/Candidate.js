@@ -6,7 +6,7 @@ import style from "./Candidate.module.scss";
 
 const Candidate = ({ id, avatar, name, email }) => {
   return (
-    <Col xs={4}>
+    <Col xl={4} lg={4} md={6} xs={12}>
       <div className={`card text-center mt-4 ${style.card}`}>
         <Link to={`/candidate_info/${id}`} className="my-auto">
           <img
@@ -27,8 +27,6 @@ const Candidate = ({ id, avatar, name, email }) => {
     </Col>
   );
 };
-
-//img src="https://image.noelshack.com/fichiers/2016/05/1454853726-16013-w600-1.jpg"
 
 Candidate.propTypes = {
   avatar: PropTypes.string,

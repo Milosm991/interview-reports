@@ -24,6 +24,13 @@ class ReportsTable extends React.Component {
       })
     );
   }
+  formatDate = (date) => {
+    let formatDate = new Date(date);
+    let day = formatDate.getDate();
+    let mouth = formatDate.getMonth() + 1;
+    let year = formatDate.getFullYear();
+    return `${day}.${mouth}.${year}.`;
+  };
 
   getMeMyModal = (e) => {
     const id = e.currentTarget.id;
@@ -48,7 +55,7 @@ class ReportsTable extends React.Component {
             {this.state.report.map((report, i) => (
               <tr key={i}>
                 <td>{report.companyName}</td>
-                <td>{report.interviewDate}</td>
+                <td>{this.formatDate(report.interviewDate)}</td>
                 <td>{report.status}</td>
 
                 <td key={i}>

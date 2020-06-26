@@ -6,12 +6,12 @@ const InfoModal = ({ name, company, status, note, date, phase }) => {
   return (
     <>
       <Row>
-        <Col xs={12}>
+        <Col xs={12} md={12} lg={12} xl={12}>
           <div className={style.infoModal}>
             <h2>{name}</h2>
             <Row>
-              <Col xs={6}>
-                <Card className={style.infoCard} style={{ width: "18rem" }}>
+              <Col xs={12} md={12} lg={6} xl={6}>
+                <Card className={style.infoCard}>
                   <Card.Body>
                     <Card.Title>{company}</Card.Title>
                     <Card.Subtitle className="mb-2 text-muted">
@@ -34,8 +34,8 @@ const InfoModal = ({ name, company, status, note, date, phase }) => {
                   </Card.Body>
                 </Card>
               </Col>
-              <Col xs={6}>
-                <Card className={style.infoCard} style={{ width: "18rem" }}>
+              <Col xs={12} md={12} lg={6} xl={6}>
+                <Card className={style.infoCard}>
                   <Card.Body>
                     <Card.Text>{note}</Card.Text>
                   </Card.Body>

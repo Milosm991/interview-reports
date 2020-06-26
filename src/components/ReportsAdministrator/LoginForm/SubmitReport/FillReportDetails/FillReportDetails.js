@@ -30,7 +30,7 @@ class FillReportDetails extends React.Component {
             <span className={style.candidate_name}>
               {this.props.candidateName}
             </span>
-            <p className={style.candidate}>Company:</p>
+            <p className={style.company}>Company:</p>
             <span className={style.company_name}>{this.props.companyName}</span>
           </div>
         </div>
@@ -92,8 +92,8 @@ class FillReportDetails extends React.Component {
             </Col>
           </Row>
           <div className={style.butons}>
-            <Button onClick={this.props.prev}>Back</Button>
-            <Button onClick={this.props.submit}>Submit</Button>
+            <Button onClick={this.props.prev} className={style.btnColor}>Back</Button>
+            <Button onClick={this.props.submit} className={style.btnColor}>Submit</Button>
           </div>
         </Col>
       </Row>

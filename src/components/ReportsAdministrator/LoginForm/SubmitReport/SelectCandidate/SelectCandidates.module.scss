@@ -1,19 +1,43 @@
-.candidates img {
-  width: 50px;
-  height: 50px;
-  border-radius: 50%;
-  margin-right: 5px;
-}
 .candidates {
   display: flex;
   flex-wrap: wrap;
 }
-.selecting {
-  background-color: grey;
-}
 .span {
-  padding: 2px;
+  padding: 2px 5px;
   border: 1px solid black;
   border-radius: 50%;
 }
 
+.center_content {
+  display: flex;
+  justify-content: center;
+}
+.typeOfAction {
+  border-right: solid 1px black;
+}
+
+.btn {
+  background-color: #5b84b1ff !important;
+  border-color: #5b84b1ff !important;
+}
+
+@media only screen and (max-width: 1000px) {
+  .typeOfAction {
+    border: none;
+  }
+  .btn {
+    margin-bottom: 10em;
+  }
+}
+
+@media only screen and (max-width: 550px) {
+  .typeOfAction {
+    border: none;
+  }
+  .btn {
+    margin-bottom: 10em;
+  }
+  .search {
+    width: 400px !important;
+  }
+}

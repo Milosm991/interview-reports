@@ -5,7 +5,7 @@ const Footer = () => {
   return (
     <footer className={`footer mt-auto py-3 ${style.footer}`}>
       <div className="container">
-        <span className="text-muted">Place sticky footer content here.</span>
+        <span>&copy; BIT 2020 Coders Imploders</span>
       </div>
     </footer>
   );

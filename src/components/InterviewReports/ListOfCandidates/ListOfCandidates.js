@@ -35,13 +35,13 @@ class ListOfCandidates extends React.Component {
 
   render() {
     return (
-      <>
+      <div>
         <IRHeader />
         <Container>
           <SearchBar getInputValue={this.getInputValue} />
           <Row>
             <Col className={style.wrapper} xs={12}>
-              <Row>
+              <Row className="mb-5">
                 {this.state.filteredCandidates.length ? (
                   this.state.filteredCandidates.map((candidate, i) => (
                     <Candidate
@@ -60,7 +60,7 @@ class ListOfCandidates extends React.Component {
           </Row>
         </Container>
         <Footer />
-      </>
+      </div>
     );
   }
 }
