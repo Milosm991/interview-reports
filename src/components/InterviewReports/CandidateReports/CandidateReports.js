@@ -1,6 +1,7 @@
 import React from "react";
 import { Row, Col, Container } from "react-bootstrap";
 import style from "./CandidateReports.module.scss";
+
 import { IRHeader } from "../IRHeader/IRHeader";
 import { ReportsTable } from "./ReportsTable/ReportsTable";
 import { CandidateService } from "../../../services/CandidateService";
