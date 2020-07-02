@@ -17,8 +17,9 @@ class Report extends React.Component {
   }
 
   date = new Date(this.props.interviewDate);
-
+  
   render() {
+    console.log(this.props.interviewDate)
     return (
       <Container className={style.container}>
         <div className={`row ${style.aboutReport}`}>
@@ -81,7 +82,7 @@ class Report extends React.Component {
             name={this.props.name}
             company={this.props.company}
             status={this.props.status}
-            date={this.props.date}
+            date={new Date(this.props.interviewDate)}
             note={this.props.note}
             phase={this.props.phase}
           />
@@ -93,7 +94,6 @@ class Report extends React.Component {
             }
             className={style.modalBtn}
           >
-            X
           </button>
         </Modal>
       </Container>

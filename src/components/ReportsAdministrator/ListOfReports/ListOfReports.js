@@ -67,7 +67,8 @@ class ListOfReports extends React.Component {
           <Row>
             {this.state.filteredReports.length ? (
               this.state.filteredReports.map((report) => (
-                <Report
+                console.log(report.interviewDate),
+               <Report
                   key={report.id}
                   name={report.candidateName}
                   company={report.companyName}
