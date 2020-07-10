@@ -93,7 +93,7 @@ class Report extends React.Component {
               })
             }
             className={style.modalBtn}
-          >
+          >X
           </button>
         </Modal>
       </Container>
